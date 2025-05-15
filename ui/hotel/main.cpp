@@ -1,5 +1,20 @@
-﻿#include <QGuiApplication>
+﻿#include <QDebug>
+#include <QDirIterator>
+#include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QUrl>
+
+void printResourceTree(const QString &path, int depth = 0)
+{
+    QDirIterator it(path, QDirIterator::NoIteratorFlags);
+    while (it.hasNext()) {
+        QString entry = it.next();
+        qDebug().noquote().nospace() << QString(depth * 2, ' ') << entry;
+        if (QFileInfo(entry).isDir()) {
+            printResourceTree(entry, depth + 1);
+        }
+    }
+}
 
 int main(int argc, char *argv[])
 {
@@ -10,9 +25,14 @@ int main(int argc, char *argv[])
         &engine,
         &QQmlApplicationEngine::objectCreationFailed,
         &app,
-        []() { QCoreApplication::exit(-1); },
+        []() {
+            // 最初のQMLの読み込み失敗
+            QCoreApplication::exit(-1);
+        },
         Qt::QueuedConnection);
-    engine.loadFromModule("hotel", "qrc:/hotel/qml/Main");
+    engine.load(QUrl(QStringLiteral("qrc:/qml/Main.qml")));
+
+    // printResourceTree(":/");
 
     return app.exec();
 }

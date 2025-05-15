@@ -13,15 +13,15 @@ qt_add_executable(apphotel
     main.cpp
 )
 
-qt_add_qml_module(apphotel
-    URI hotel
-    VERSION 1.0
-)
-
-set(QML_IMPORT_PATH "${CMAKE_SOURCE_DIR}/qml" "${CMAKE_BINARY_DIR}/qml")
+set(QML_IMPORT_PATH "${CMAKE_SOURCE_DIR}/qml" "${CMAKE_CURRENT_BINARY_DIR}/qml")
 
 qt_add_resources(RESOURCES_QRC
     qml.qrc
+)
+
+target_sources(apphotel
+    PRIVATE
+        ${RESOURCES_QRC}
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
