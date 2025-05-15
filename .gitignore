@@ -1,1 +1,3 @@
 ui/hotel/build/
+.vscode/
+ui/hotel/CMakeLists.txt.user
