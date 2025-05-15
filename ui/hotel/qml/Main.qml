@@ -21,17 +21,39 @@ Window {
     minimumHeight: height
     flags: Qt.Window | Qt.WindowSystemMenuHint
 
+    // qmlFileName: /qml/views/の下にあるファイル名を指定する。
+    function pushScreen(qmlFileName) {
+        // 現在画面のクリア
+        _stackView.clear( StackView.Immediate );
+
+        qmlFileName = "qrc:/qml/views/" + qmlFileName + ".qml";
+
+        console.log( "pushScreen: " + qmlFileName );
+
+        let qmlComponent = Qt.createComponent( qmlFileName );
+
+        if ( !qmlComponent ) {
+            console.log( "component create failed" );
+        } else if ( qmlComponent.errorString() ) {
+            console.log( qmlComponent.errorString() );
+        }
+
+        _stackView.push( qmlComponent, StackView.Immediate );
+    }
+
     Component.onCompleted: {
         _root.x = 0
         _root.y = 0
+
+        _root.pushScreen("m0_0_0_InitPage")
     }
 
     QtObject {
         id: _wsc
 
         // 全体のスケール設定
-        property real xScale: 1.0
-        property real yScale: 1.0
+        property real xScale: 0.8 // 1.0
+        property real yScale: 0.8 // 1.0
     }
 
     Item {
