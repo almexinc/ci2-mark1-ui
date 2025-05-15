@@ -1,8 +1,54 @@
-﻿import QtQuick
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+import QtQuick 6.5
+import QtQuick.Window 6.5
+import QtQuick.Controls 6.5
+import QtQuick.Layouts 6.5
 
 Window {
-    width: 640
-    height: 480
+    id: _root
+
+    // window横幅
+    readonly property real _window_width: 1920
+    // window高さ
+    readonly property real _window_height: 1080
+
+    width: _window_width * _wsc.xScale
+    height: _window_height * _wsc.yScale
     visible: true
-    title: qsTr("Hello World")
+    minimumWidth: width
+    minimumHeight: height
+    flags: Qt.Window | Qt.WindowSystemMenuHint
+
+    Component.onCompleted: {
+        _root.x = 0
+        _root.y = 0
+    }
+
+    QtObject {
+        id: _wsc
+
+        // 全体のスケール設定
+        property real xScale: 1.0
+        property real yScale: 1.0
+    }
+
+    Item {
+        width: _window_width
+        height: _window_height
+        focus: true
+
+        // デバッグ用の画面サイズ変更用transform
+        transform: Scale {
+            xScale: _wsc.xScale
+            yScale: _wsc.yScale
+        }
+
+        // 画面コンテンツ
+        StackView {
+            id: _stackView
+            anchors.fill: parent
+        }
+    }
 }
