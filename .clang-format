@@ -1,0 +1,44 @@
+# VSCodeや、clang-formatで指定する設定値の参考
+# https://yasuharu519.hatenablog.com/entry/2015/12/13/210825
+# 大元（全オプション解説）
+# https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+# Clang Format Editor（日本語のオプション解説があり、また自動生成もできる）
+# https://pystyle.info/apps/clang-format-editor/
+
+# WebKitのデフォルト値
+# https://github.com/WebKit/WebKit/blob/main/.clang-format
+BasedOnStyle: WebKit
+
+# 以下WebKitより変更点
+PointerAlignment: Right
+CommentPragmas: '\*'
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: true
+AlignConsecutiveMacros: Consecutive
+# コメントをそろえる
+AlignTrailingComments: true
+# 行あたりの列数が等しい配列にのみ適用。ただ、先頭の空白がおかしいが無いよりマシなので許容する
+AlignArrayOfStructures: None
+# clang-formatのversion 13, 14 だと長さが異なる初期化リストは乱れる
+# AlignArrayOfStructures: Left
+
+# ブラケットはWebKitのデフォルト値をそのまま適用
+# デフォルトから変更は以下のみ。
+# 既存設定に対して特定のブラケット指定をオーバーライドする
+BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterClass:      true
+  AfterCaseLabel:  true
+  AfterControlStatement: false
+  AfterEnum:       false
+  AfterFunction:   true
+  AfterNamespace:  false
+  AfterObjCDeclaration: false
+  AfterStruct:     false
+  AfterUnion:      false
+  BeforeCatch:     false
+  BeforeElse:      false
+  IndentBraces:    false
+  SplitEmptyFunction: true
+  SplitEmptyRecord: true
+  SplitEmptyNamespace: true
