@@ -13,6 +13,21 @@ qt_add_executable(apphotel
     main.cpp
 )
 
+# Windows上のMSVCコンパイラの場合、警告レベルを最大に設定
+if(MSVC)
+    # /W4: 警告レベル4
+    # /WX: 警告をエラーとして扱う
+    # /Wall: (注意して使用) すべての警告を有効にする。ノイズが多い可能性あり。
+    # /analyze: (ビルド時間が長くなる) 静的コード分析を実行
+    target_compile_options(apphotel PRIVATE
+        /W4 # 実用的な最大警告レベル
+        /WX # 警告をエラーとして扱う
+        /utf-8
+
+        # /Wall  # 必要に応じて。ただしノイズが多いことに注意
+    )
+endif()
+
 set(QML_IMPORT_PATH "${CMAKE_SOURCE_DIR}/qml" "${CMAKE_CURRENT_BINARY_DIR}/qml")
 
 qt_add_resources(RESOURCES_QRC
@@ -21,14 +36,15 @@ qt_add_resources(RESOURCES_QRC
 
 target_sources(apphotel
     PRIVATE
-        ${RESOURCES_QRC}
+    ${RESOURCES_QRC}
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
 # explicit, fixed bundle identifier manually though.
 set_target_properties(apphotel PROPERTIES
-#    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.apphotel
+
+    # MACOSX_BUNDLE_GUI_IDENTIFIER com.example.apphotel
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
     MACOSX_BUNDLE TRUE
