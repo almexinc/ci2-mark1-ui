@@ -5,7 +5,14 @@ project(hotel VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(root_path ${CMAKE_CURRENT_SOURCE_DIR}/../../)
+
 find_package(Qt6 REQUIRED COMPONENTS Quick LinguistTools)
+
+# プリプロセッサ定義
+add_definitions(
+    -DROOT_PATH="${root_path}"
+)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
@@ -20,6 +27,7 @@ set(TS_FILES
 qt_add_executable(apphotel
     main.cpp
     ../common/src/controller/logcontroller.cpp
+    ../common/src/controller/resourcecontroller.cpp
     ../common/src/utils/logger.cpp
 )
 

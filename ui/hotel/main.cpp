@@ -1,4 +1,8 @@
-﻿#include <QDebug>
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+
+#include <QDebug>
 #include <QDirIterator>
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
@@ -6,6 +10,7 @@
 #include <QUrl>
 
 #include "common/src/controller/logcontroller.h"
+#include "common/src/controller/resourcecontroller.h"
 #include "common/src/utils/logger.h"
 
 void printResourceTree(const QString &path, int depth = 0)
@@ -24,8 +29,9 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
-    // コントローラーのセットアップ
-    LogController::getInstance()->init(QCoreApplication::applicationDirPath() + "/log"); // TODO: パス管理先は変える
+    // 各種コントローラーのセットアップ
+    auto *resourceController = ResourceController::getInstance();
+    LogController::getInstance()->init(resourceController->getLogDirPath());
 
     QTranslator translator;
     QString     locale = "ja";
@@ -46,7 +52,7 @@ int main(int argc, char *argv[])
     engine.load(QUrl(QStringLiteral("qrc:/qml/Main.qml")));
 
     // アプリケーションがqrc:で取得出来る全リソースの出力
-    printResourceTree(":/");
+    // printResourceTree(":/");
 
     Logger::info("main", __FUNCTION__, "アプリケーションが起動しました。");
 
