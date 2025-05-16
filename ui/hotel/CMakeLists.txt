@@ -5,12 +5,29 @@ project(hotel VERSION 0.1 LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick)
+find_package(Qt6 REQUIRED COMPONENTS Quick LinguistTools)
 
 qt_standard_project_setup(REQUIRES 6.5)
 
+# 翻訳用のTS（Translation Source）ファイルのリストを定義
+set(TS_FILES
+    translations/hotel_ja.ts
+    translations/hotel_ko.ts
+    translations/hotel_fr.ts
+    translations/hotel_en.ts
+)
+
 qt_add_executable(apphotel
     main.cpp
+)
+
+# 翻訳を追加
+qt_add_translations(apphotel
+    TS_FILES ${TS_FILES}
+
+    # 必要に応じてオプションを追加
+    # LRELEASE_OPTIONS
+    # RESOURCE_PREFIX "/translations"  # qrc内でのパスプレフィックス
 )
 
 # Windows上のMSVCコンパイラの場合、警告レベルを最大に設定
