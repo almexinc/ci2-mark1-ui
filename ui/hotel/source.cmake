@@ -1,0 +1,2 @@
+set(HOTEL_BUILD_CPP_SOURCES
+)

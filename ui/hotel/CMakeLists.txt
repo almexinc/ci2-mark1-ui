@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(root_path ${CMAKE_CURRENT_SOURCE_DIR}/../../)
 
+# ここに追加した後、target_link_librariesにも追加を忘れずに。
 find_package(Qt6 REQUIRED COMPONENTS Quick LinguistTools Mqtt)
 
 # プリプロセッサ定義
@@ -24,18 +25,20 @@ set(TS_FILES
     translations/hotel_en.ts
 )
 
+# ソースコード記載場所
+include(source.cmake)
+include(../common/source.cmake)
+
 qt_add_executable(apphotel
     main.cpp
-    ../common/src/controller/logcontroller.cpp
-    ../common/src/controller/resourcecontroller.cpp
-    ../common/src/controller/mqttcontroller.cpp
-    ../common/src/utils/logger.cpp
+    ${COMMON_BUILD_CPP_SOURCES}
+    ${HOTEL_BUILD_CPP_SOURCES}
 )
 
 # インクルードディレクトリを追加
 target_include_directories(apphotel PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/..
-    C:/Qt2023/6.5.3/msvc2019_64/include/QtMqtt
+    C:/Qt/6.5.3/msvc2019_64/include/QtMqtt
 )
 
 # 翻訳を追加
