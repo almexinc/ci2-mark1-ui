@@ -19,6 +19,13 @@ set(TS_FILES
 
 qt_add_executable(apphotel
     main.cpp
+    ../common/src/controller/logcontroller.cpp
+    ../common/src/utils/logger.cpp
+)
+
+# インクルードディレクトリを追加
+target_include_directories(apphotel PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/..
 )
 
 # 翻訳を追加
