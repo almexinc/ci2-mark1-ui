@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(root_path ${CMAKE_CURRENT_SOURCE_DIR}/../../)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick LinguistTools)
+find_package(Qt6 REQUIRED COMPONENTS Quick LinguistTools Mqtt)
 
 # プリプロセッサ定義
 add_definitions(
@@ -28,12 +28,14 @@ qt_add_executable(apphotel
     main.cpp
     ../common/src/controller/logcontroller.cpp
     ../common/src/controller/resourcecontroller.cpp
+    ../common/src/controller/mqttcontroller.cpp
     ../common/src/utils/logger.cpp
 )
 
 # インクルードディレクトリを追加
 target_include_directories(apphotel PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/..
+    C:/Qt2023/6.5.3/msvc2019_64/include/QtMqtt
 )
 
 # 翻訳を追加
@@ -84,7 +86,7 @@ set_target_properties(apphotel PROPERTIES
 )
 
 target_link_libraries(apphotel
-    PRIVATE Qt6::Quick
+    PRIVATE Qt6::Quick Qt6::Mqtt
 )
 
 include(GNUInstallDirs)
