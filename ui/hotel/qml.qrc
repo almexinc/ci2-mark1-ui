@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>qml/Main.qml</file>
         <file>qml/views/m0_0_0_InitPage.qml</file>
+        <file>qml/views/te0_0_1_TestIdle.qml</file>
     </qresource>
 </RCC>

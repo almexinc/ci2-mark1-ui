@@ -31,14 +31,25 @@ include(../common/source.cmake)
 
 qt_add_executable(apphotel
     main.cpp
-    ${COMMON_BUILD_CPP_SOURCES}
+)
+
+# QMLモジュールを追加（新しい方法）
+qt_add_qml_module(apphotel
+    URI Almex.Hotel
+    VERSION 1.0
+    SOURCES
     ${HOTEL_BUILD_CPP_SOURCES}
+    ${COMMON_BUILD_CPP_SOURCES}
 )
 
 # インクルードディレクトリを追加
 target_include_directories(apphotel PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/..
-    C:/Qt/6.5.3/msvc2019_64/include/QtMqtt
+
+    # QMLとして使うC++ファイルは、プロジェクトのインクルードパスからプレフィックスなしでアクセスできる必要がある。
+    # そのため、サブフォルダ以下はインクルードパスに追加する必要がある。
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/views
+    ${CMAKE_CURRENT_SOURCE_DIR}/../common/src/views
 )
 
 # 翻訳を追加

@@ -4,6 +4,8 @@
 import QtQuick 6.5
 import QtQuick.Controls 6.5
 
+import Almex.Hotel 1.0
+
 Item {
 
     property string qmlFileName: "m0_0_0_InitPage"
@@ -29,5 +31,9 @@ Item {
         text: qsTr("こんにちは")
         font.pixelSize: 20
         color: "black"
+    }
+
+    M0_0_0_InitPage {
+
     }
 }
