@@ -1,4 +1,7 @@
-﻿#ifndef LOGCONTROLLER_H
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#ifndef LOGCONTROLLER_H
 #define LOGCONTROLLER_H
 
 #include <QMutex>

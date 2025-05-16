@@ -1,4 +1,7 @@
-﻿import QtQuick 2.15
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+import QtQuick 2.15
 
 Item {
     Rectangle {
@@ -8,4 +11,11 @@ Item {
         color: "blue"
     }
 
+    Text {
+        id: text
+        anchors.centerIn: parent
+        text: qsTr("こんにちは")
+        font.pixelSize: 20
+        color: "black"
+    }
 }

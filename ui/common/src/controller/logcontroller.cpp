@@ -1,4 +1,7 @@
-﻿#include "logcontroller.h"
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#include "logcontroller.h"
 
 LogController::LogController()
 {

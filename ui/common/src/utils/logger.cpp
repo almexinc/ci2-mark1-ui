@@ -1,4 +1,7 @@
-﻿#include "logger.h"
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#include "logger.h"
 
 #include "common/src/controller/logcontroller.h"
 

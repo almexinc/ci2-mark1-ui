@@ -1,4 +1,7 @@
-﻿#ifndef LOGGER_H
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#ifndef LOGGER_H
 #define LOGGER_H
 
 #include <QObject>
