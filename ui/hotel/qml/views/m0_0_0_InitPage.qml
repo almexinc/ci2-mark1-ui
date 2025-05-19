@@ -19,14 +19,14 @@ Item {
     Component.onCompleted: console.log("Component.onCompleted:" + qmlFileName)
 
     Rectangle {
-        id: rect
+        id: _rect
         width: 100
         height: 100
         color: "blue"
     }
 
     Text {
-        id: text
+        id: _text
         anchors.centerIn: parent
         text: qsTr("こんにちは")
         font.pixelSize: 20
@@ -34,6 +34,18 @@ Item {
     }
 
     M0_0_0_InitPage {
+        id: _vm
+    }
 
+    // 5秒後に発火する
+    Timer {
+        id: _timer
+        interval: 3000
+        running: true
+        repeat: false
+        onTriggered: {
+            console.log("Timer triggered")
+            _vm.nextScreen()
+        }
     }
 }

@@ -13,6 +13,7 @@ public:
     explicit Logger(QObject *parent = nullptr);
 
     static void info(const QString &sourceName, const QString &method, const QString &text);
+    static void error(const QString &sourceName, const QString &method, const QString &text);
 
 signals:
 };

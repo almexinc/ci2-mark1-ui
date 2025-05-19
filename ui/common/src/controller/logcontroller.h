@@ -12,7 +12,6 @@
 class LogController : public QObject
 {
     Q_OBJECT
-    QML_ELEMENT
 public:
     LogController(const LogController &)            = delete;
     LogController &operator=(const LogController &) = delete;
@@ -23,7 +22,14 @@ public:
 
     void init(const QString &logOutputFilePath);
 
+    /**
+     * @brief infoレベルのログを出力します。
+     * 内部的にはaddLogメソッドを呼び出します。
+     *
+     * @param text 出力するメッセージ
+     */
     void info(const QString &text);
+    void error(const QString &text);
 
     void addLog(const QString &level, const QString &text, const QString &logOutputFilePath);
 

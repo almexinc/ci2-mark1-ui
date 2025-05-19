@@ -56,6 +56,7 @@ Window {
         property real yScale: 0.8 // 1.0
     }
 
+    // メインの表示領域
     Item {
         width: _window_width
         height: _window_height
@@ -71,6 +72,16 @@ Window {
         StackView {
             id: _stackView
             anchors.fill: parent
+        }
+    }
+
+
+    // C++側関数からQML処理を呼び出す
+    Connections {
+        target: sharedController
+
+        function onQmlFilePushScreen(qmlFileName) {
+            _root.pushScreen(qmlFileName);
         }
     }
 }

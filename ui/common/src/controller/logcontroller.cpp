@@ -35,6 +35,11 @@ void LogController::info(const QString &text)
     this->addLog("INFO ", text, this->getLogFilePath());
 }
 
+void LogController::error(const QString &text)
+{
+    this->addLog("ERROR", text, this->getLogFilePath());
+}
+
 void LogController::addLog(const QString &level, const QString &text, const QString &logOutputFilePath)
 {
     this->_logWriter.addLog(level, text, logOutputFilePath);

@@ -8,9 +8,12 @@
 #include <QQmlApplicationEngine>
 #include <QTranslator>
 #include <QUrl>
+#include <QtQml>
 
 #include "common/src/controller/logcontroller.h"
+#include "common/src/controller/mqttcontroller.h"
 #include "common/src/controller/resourcecontroller.h"
+#include "common/src/controller/sharedcontroller.h"
 #include "common/src/utils/logger.h"
 
 void printResourceTree(const QString &path, int depth = 0)
@@ -27,11 +30,17 @@ void printResourceTree(const QString &path, int depth = 0)
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication app(argc, argv);
+    QGuiApplication       app(argc, argv);
+    QQmlApplicationEngine engine;
 
     // 各種コントローラーのセットアップ
     auto *resourceController = ResourceController::getInstance();
     LogController::getInstance()->init(resourceController->getLogDirPath());
+
+    MqttController mqttController;
+
+    auto sharedController = SharedController::getInstance();
+    engine.rootContext()->setContextProperty("sharedController", sharedController);
 
     QTranslator translator;
     QString     locale = "ja";
@@ -39,7 +48,6 @@ int main(int argc, char *argv[])
         QCoreApplication::installTranslator(&translator);
     }
 
-    QQmlApplicationEngine engine;
     QObject::connect(
         &engine,
         &QQmlApplicationEngine::objectCreationFailed,

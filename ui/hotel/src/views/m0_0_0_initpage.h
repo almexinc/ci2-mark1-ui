@@ -10,6 +10,9 @@ class M0_0_0_InitPage : public QObject
     QML_ELEMENT
 public:
     explicit M0_0_0_InitPage(QObject *parent = nullptr);
+    ~M0_0_0_InitPage();
+
+    Q_INVOKABLE void nextScreen();
 
 signals:
 };
