@@ -12,7 +12,21 @@ public:
     explicit TE0_0_1_TestIdle(QObject *parent = nullptr);
     ~TE0_0_1_TestIdle();
 
+    /**
+     * @brief 画面破棄時に次の画面のコンストラクタが呼ばれるより先に呼ばれる
+     */
+    Q_INVOKABLE void onRemoved();
+
 signals:
+
+private:
+    /**
+     * @brief MQTTメッセージ受信処理
+     *
+     * @param topic トピック名
+     * @param message メッセージ本文
+     */
+    void mqttMessageReceived(const QString &topic, const QByteArray &message);
 };
 
 #endif // TE____1_TESTIDLE_H

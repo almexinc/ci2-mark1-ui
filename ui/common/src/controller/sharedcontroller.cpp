@@ -10,6 +10,13 @@ SharedController::SharedController()
     connect(this->_mqttController, &MqttController::messageReceived, this, [this](const QString &topic, const QByteArray &message) {
         emit this->mqttMessageReceived(topic, message);
     });
+
+    // MQTTメッセージを送信する
+    connect(this, &SharedController::mqttMessageSend, this->_mqttController, [this](const QString &topic, const QByteArray &message) {
+        this->_mqttController->sendMessage(topic, message);
+
+        // TODO: ダミーデータの送信
+    });
 }
 
 SharedController *SharedController::getInstance()

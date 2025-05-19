@@ -28,6 +28,14 @@ signals:
     void mqttMessageReceived(const QString &topic, const QByteArray &message);
 
     /**
+     * @brief MQTTメッセージ送信時に使用するシグナル
+     *
+     * @param topic トピック名
+     * @param message メッセージ本文
+     */
+    void mqttMessageSend(const QString &topic, const QByteArray &message);
+
+    /**
      * @brief 指定の .qml ファイルを読み込むことを通知
      * @param qmlFileName .qml QMLファイル名。例） qrc:/qml/views/Test.qml なら Test だけ指定する
      */

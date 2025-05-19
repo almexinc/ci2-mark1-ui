@@ -14,7 +14,10 @@ Item {
     StackView.onActivated: console.log("StackView.onActivated:" + qmlFileName)
     StackView.onDeactivating: console.log("StackView.onDeactivating:" + qmlFileName)
     StackView.onDeactivated: console.log("StackView.onDeactivated:" + qmlFileName)
-    StackView.onRemoved: console.log("StackView.onRemoved:" + qmlFileName)
+    StackView.onRemoved: {
+        console.log("StackView.onRemoved:" + qmlFileName)
+        _vm.onRemoved()
+    }
 
     Component.onCompleted: console.log("Component.onCompleted:" + qmlFileName)
 
