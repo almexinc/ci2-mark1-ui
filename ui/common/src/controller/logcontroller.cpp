@@ -4,6 +4,7 @@
 #include "logcontroller.h"
 
 LogController::LogController()
+    : QObject { nullptr }
 {
     _logWriter.start();
 }
@@ -49,6 +50,16 @@ void LogController::startIntervalDeleteLog(int deleteDays)
         timer->setSingleShot(false);
         timer->start(24 * 60 * 60 * 1000); // 24時間
     }
+}
+
+/**
+ * @brief アプリ終了時に呼び出す
+ */
+void LogController::stopLogWriter()
+{
+    this->_logWriter._writerRunning = false;
+    this->_logWriter.quit();
+    this->_logWriter.wait();
 }
 
 void LogController::info(const QString &text)
@@ -117,9 +128,9 @@ void LogController::LogWriter::addLog(const QString &level, const QString &text,
 
 void LogController::LogWriter::run()
 {
-    while (true) {
+    do {
         this->writeLog();
-    }
+    } while (this->_writerRunning);
 }
 
 void LogController::LogWriter::writeLog()

@@ -30,6 +30,11 @@ public:
     void startIntervalDeleteLog(int deleteDays);
 
     /**
+     * @brief アプリ終了時に呼び出す
+     */
+    void stopLogWriter();
+
+    /**
      * @brief infoレベルのログを出力します。
      * 内部的にはaddLogメソッドを呼び出します。
      *
@@ -54,6 +59,8 @@ private:
         };
 
         void addLog(const QString &level, const QString &text, const QString &logOutputFilePath);
+
+        bool _writerRunning = true;
 
     protected:
         void run();

@@ -49,6 +49,7 @@ int main(int argc, char *argv[])
     auto sharedController = SharedController::getInstance();
     engine.rootContext()->setContextProperty("sharedController", sharedController);
 
+    // 言語設定
     QTranslator translator;
     QString     locale = "ja";
     if (translator.load(":/i18n/hotel_" + locale + ".qm")) {
@@ -71,5 +72,10 @@ int main(int argc, char *argv[])
 
     Logger::info("main", __FUNCTION__, "アプリケーションが起動しました。");
 
-    return app.exec();
+    // UIの表示
+    auto ret = app.exec();
+
+    LogController::getInstance()->stopLogWriter();
+
+    return ret;
 }
