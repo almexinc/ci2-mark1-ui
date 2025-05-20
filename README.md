@@ -13,15 +13,25 @@
   - [その他](#その他)
     - [メンバ変数にアクセスする場合は this-\> でアクセスする](#メンバ変数にアクセスする場合は-this--でアクセスする)
 
+# QMLのコーディング規約
+
+通常は外部（別会社や別部署）で作成頂いたQMLファイルに合うように対応してください。
+
+ゼロベースから作る場合などは、Qt公式に従います。
+https://doc.qt.io/qt-6/qml-codingconventions.html
+
+Qt公式のコーディング規約からの例外は、id名は`_`を先頭につけます。
+
 # コーディング規約
 
 C++のバージョンとしてはC++20を使用します。
+
 MSVCでビルドされるWindowsアプリですが、今後、Android向けビルドが想定されているため、Windows向けだとわかっているコードはif/defで切る必要があります。
 
 以下をベースとしています。
 誤解などあると思いますが、可能な限りこちらに従うようにしてください。
 
-Google C++ スタイルガイド 日本語全訳
+*Google C++ スタイルガイド 日本語全訳*
 https://ttsuki.github.io/styleguide/cppguide.ja.html
 
 ただし、ベースガイドに不定期に更新があるので、どこかでずれるかもしれません。
@@ -62,7 +72,7 @@ https://ttsuki.github.io/styleguide/cppguide.ja.html#Variable_Names
 int localId;
 ```
 
-メンバ変数は「_」から始めてください。
+クラスのメンバ変数は「_」から始めてください。
 
 ```cpp
 class A {
@@ -72,6 +82,14 @@ private:
 ```
 
 「クラスのデータメンバ」に記載されている末尾のアンダースコアはつけません。
+
+structの場合は不要です。
+
+```cpp
+struct {
+  int localId;
+}
+```
 
 ### 定数名
 
@@ -139,3 +157,13 @@ void A::test() {
     this->getLocalId();
 }
 ```
+
+# ライセンス
+
+サードパーティのライセンス表記
+
+## yaml-cpp
+
+MITライセンス条文リンク
+https://github.com/jbeder/yaml-cpp/blob/master/LICENSE
+
