@@ -1,5 +1,7 @@
 ﻿#include "sharedcontroller.h"
 
+#include "common/src/utils/logger.h"
+
 SharedController::SharedController()
     : QObject { nullptr }
 {
@@ -23,4 +25,24 @@ SharedController *SharedController::getInstance()
 {
     static SharedController instance;
     return &instance;
+}
+
+/**
+ * @brief QML側でログを出力するためのメソッド
+ *
+ * @param text
+ */
+void SharedController::qmlLogInfo(const QString &text)
+{
+    Logger::info("qml", "", text);
+}
+
+/**
+ * @brief QML側でエラーログを出力するためのメソッド
+ *
+ * @param text
+ */
+void SharedController::qmlLogError(const QString &text)
+{
+    Logger::info("qml", "", text);
 }

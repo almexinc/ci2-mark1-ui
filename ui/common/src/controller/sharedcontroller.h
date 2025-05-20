@@ -18,6 +18,20 @@ public:
 
     static SharedController *getInstance();
 
+    /**
+     * @brief QML側でログを出力するためのメソッド
+     *
+     * @param text
+     */
+    Q_INVOKABLE void qmlLogInfo(const QString &text);
+
+    /**
+     * @brief QML側でエラーログを出力するためのメソッド
+     *
+     * @param text
+     */
+    Q_INVOKABLE void qmlLogError(const QString &text);
+
 signals:
     /**
      * @brief MQTTメッセージ受信時に通知されるシグナル

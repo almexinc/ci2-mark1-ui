@@ -28,14 +28,14 @@ Window {
 
         qmlFileName = "qrc:/qml/views/" + qmlFileName + ".qml";
 
-        console.log( "pushScreen: " + qmlFileName );
+        sharedController.qmlLogInfo("pushScreen: " + qmlFileName );
 
         let qmlComponent = Qt.createComponent( qmlFileName );
 
         if ( !qmlComponent ) {
-            console.log( "component create failed" );
+            sharedController.qmlLogError( "画面生成に失敗しました。" );
         } else if ( qmlComponent.errorString() ) {
-            console.log( qmlComponent.errorString() );
+            sharedController.qmlLogError( qmlComponent.errorString() );
         }
 
         _stackView.push( qmlComponent, StackView.Immediate );

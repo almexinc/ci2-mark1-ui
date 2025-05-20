@@ -17,6 +17,12 @@
 #include "common/src/controller/uisettingcontroller.h"
 #include "common/src/utils/logger.h"
 
+/**
+ * @brief 動作確認用。qrc: で取得できる全リソースを出力する
+ *
+ * @param path
+ * @param depth
+ */
 void printResourceTree(const QString &path, int depth = 0)
 {
     QDirIterator it(path, QDirIterator::NoIteratorFlags);
@@ -45,7 +51,7 @@ int main(int argc, char *argv[])
     // ログの削除&定期削除開始
     LogController::getInstance()->startIntervalDeleteLog(uiSettingController->getLogSaveDays());
 
-    // MQTT含むコントローラーのセットアップ
+    // MQTT含むコントローラーのセットアップ。QML側でも使うコードの登録
     auto sharedController = SharedController::getInstance();
     engine.rootContext()->setContextProperty("sharedController", sharedController);
 
