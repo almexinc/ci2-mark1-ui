@@ -2,6 +2,7 @@
 #define UISETTINGCONTROLLER_H
 
 #include <QObject>
+#include <yaml-cpp/yaml.h>
 
 class UiSettingController : public QObject
 {
@@ -17,12 +18,20 @@ public:
 
     void init(const QString &filePath);
 
+    /**
+     * @brief ログ保存日数を取得する
+     *
+     * @return int ログ保存日数。
+     */
+    int getLogSaveDays() const;
+
 signals:
 
 private:
     UiSettingController();
 
-    QString _filePath;
+    QString    _filePath;
+    YAML::Node _config;
 };
 
 #endif // UISETTINGCONTROLLER_H

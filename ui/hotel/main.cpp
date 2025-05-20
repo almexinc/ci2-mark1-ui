@@ -42,6 +42,9 @@ int main(int argc, char *argv[])
     auto *uiSettingController = UiSettingController::getInstance();
     uiSettingController->init(resourceController->getSettingDirPath() + "/ui_hotel_setting.yaml");
 
+    // ログの削除&定期削除開始
+    LogController::getInstance()->startIntervalDeleteLog(uiSettingController->getLogSaveDays());
+
     // MQTT含むコントローラーのセットアップ
     auto sharedController = SharedController::getInstance();
     engine.rootContext()->setContextProperty("sharedController", sharedController);

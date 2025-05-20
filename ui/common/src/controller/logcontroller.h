@@ -23,6 +23,13 @@ public:
     void init(const QString &logOutputFilePath);
 
     /**
+     * @brief 実行直後と、24h間ごとにログファイルを削除する。
+     *
+     * @param deleteDays 保持日数 1日以下は許容しない。最低値の2日として扱う
+     */
+    void startIntervalDeleteLog(int deleteDays);
+
+    /**
      * @brief infoレベルのログを出力します。
      * 内部的にはaddLogメソッドを呼び出します。
      *

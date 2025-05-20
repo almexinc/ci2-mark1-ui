@@ -6,14 +6,6 @@
 LogController::LogController()
 {
     _logWriter.start();
-
-    // QTimerで起動してから24時間ごとにログファイルを削除する
-    QTimer *timer = new QTimer(this);
-    connect(timer, &QTimer::timeout, this, [this]() {
-        // 365日以上前のログファイルを削除する
-        this->deleteLogFile(365);
-    });
-    timer->start(24 * 60 * 60 * 1000); // 24時間
 }
 
 LogController *LogController::getInstance()
@@ -27,6 +19,35 @@ void LogController::init(const QString &logOutputFilePath)
     this->_logDir = QDir(logOutputFilePath);
     if (!this->_logDir.exists()) {
         this->_logDir.mkpath(".");
+    }
+}
+
+/**
+ * @brief 実行直後と、24h間ごとにログファイルを削除する。
+ *
+ * @param deleteDays 保持日数 1日以下は許容しない。最低値の2日として扱う
+ */
+void LogController::startIntervalDeleteLog(int deleteDays)
+{
+    if (deleteDays <= 1) { // 1日未満はデフォルト値に設定する
+        deleteDays = 2;
+    }
+
+    // 関数実行時にログファイルを削除する
+    this->deleteLogFile(deleteDays);
+
+    // インターバル処理開始
+    static bool oneRunning = false;
+    if (!oneRunning) {
+        oneRunning = true;
+
+        // QTimerで起動してから24時間ごとにログファイルを削除する
+        QTimer *timer = new QTimer(this);
+        connect(timer, &QTimer::timeout, this, [this, deleteDays]() {
+            this->deleteLogFile(deleteDays);
+        });
+        timer->setSingleShot(false);
+        timer->start(24 * 60 * 60 * 1000); // 24時間
     }
 }
 
@@ -59,7 +80,7 @@ void LogController::deleteLogFile(int deleteDays)
     // 指定した日数より古いファイルを削除
     QDateTime deleteDate = QDateTime::currentDateTime().addDays(deleteDays * -1);
     for (QFileInfo &info : logList) {
-        qInfo() << info.absoluteFilePath() << info.birthTime();
+        // qInfo() << info.absoluteFilePath() << info.birthTime();
         if (info.birthTime() < deleteDate) {
             if (QFile::remove(info.filePath())) {
                 // 通常はinitが終わってから呼ばれるのでログ出力はされる
