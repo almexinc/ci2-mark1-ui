@@ -14,6 +14,7 @@
 #include "common/src/controller/mqttcontroller.h"
 #include "common/src/controller/resourcecontroller.h"
 #include "common/src/controller/sharedcontroller.h"
+#include "common/src/controller/uisettingcontroller.h"
 #include "common/src/utils/logger.h"
 
 void printResourceTree(const QString &path, int depth = 0)
@@ -37,8 +38,11 @@ int main(int argc, char *argv[])
     auto *resourceController = ResourceController::getInstance();
     LogController::getInstance()->init(resourceController->getLogDirPath());
 
-    MqttController mqttController;
+    // 設定ファイルの読み込み
+    auto *uiSettingController = UiSettingController::getInstance();
+    uiSettingController->init(resourceController->getSettingDirPath() + "/ui_hotel_setting.yaml");
 
+    // MQTT含むコントローラーのセットアップ
     auto sharedController = SharedController::getInstance();
     engine.rootContext()->setContextProperty("sharedController", sharedController);
 

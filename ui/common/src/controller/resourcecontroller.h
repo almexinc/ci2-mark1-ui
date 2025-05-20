@@ -20,6 +20,7 @@ public:
     static ResourceController *getInstance();
 
     QString getLogDirPath() const;
+    QString getSettingDirPath() const;
 
 signals:
 

@@ -7,8 +7,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(root_path ${CMAKE_CURRENT_SOURCE_DIR}/../../)
 
+# yaml-cppのパスを設定
+set(YAML_CPP_DIR ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/yaml-cpp-0.8.0)
+
 # ここに追加した後、target_link_librariesにも追加を忘れずに。
-find_package(Qt6 REQUIRED COMPONENTS Quick LinguistTools Mqtt)
+find_package(Qt6 REQUIRED COMPONENTS Quick LinguistTools)
+
+# yaml-cppを追加
+add_subdirectory(${YAML_CPP_DIR})
 
 # プリプロセッサ定義
 add_definitions(
@@ -100,7 +106,8 @@ set_target_properties(apphotel PROPERTIES
 )
 
 target_link_libraries(apphotel
-    PRIVATE Qt6::Quick Qt6::Mqtt
+    PRIVATE Qt6::Quick
+    PRIVATE yaml-cpp
 )
 
 include(GNUInstallDirs)

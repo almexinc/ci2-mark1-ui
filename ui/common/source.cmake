@@ -7,6 +7,8 @@ set(COMMON_BUILD_CPP_SOURCES
     ../common/src/controller/mqttcontroller.h
     ../common/src/controller/sharedcontroller.cpp
     ../common/src/controller/sharedcontroller.h
+    ../common/src/controller/uisettingcontroller.cpp
+    ../common/src/controller/uisettingcontroller.h
     ../common/src/utils/logger.cpp
     ../common/src/utils/logger.h
 )

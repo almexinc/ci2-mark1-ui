@@ -37,3 +37,8 @@ QString ResourceController::getLogDirPath() const
 {
     return this->_rootDir.absolutePath() + "/etc/log";
 }
+
+QString ResourceController::getSettingDirPath() const
+{
+    return this->_rootDir.absolutePath() + "/etc/ini";
+}
