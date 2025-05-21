@@ -40,5 +40,5 @@ QString ResourceController::getLogDirPath() const
 
 QString ResourceController::getSettingDirPath() const
 {
-    return this->_rootDir.absolutePath() + "/etc/ini";
+    return this->_rootDir.absolutePath() + "/etc/yaml";
 }
