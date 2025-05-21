@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
         },
         Qt::QueuedConnection);
-    engine.load(QUrl(QStringLiteral("qrc:/qml/Main.qml")));
+    engine.load(QUrl(QStringLiteral("qrc:/view/mainView.qml")));
 
     // アプリケーションがqrc:で取得出来る全リソースの出力
     // printResourceTree(":/");

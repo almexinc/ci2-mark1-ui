@@ -84,8 +84,10 @@ endif()
 
 set(QML_IMPORT_PATH "${CMAKE_SOURCE_DIR}/qml" "${CMAKE_CURRENT_BINARY_DIR}/qml")
 
+# QRCリソースを追加
 qt_add_resources(RESOURCES_QRC
     qml.qrc
+    resource.qrc
 )
 
 target_sources(apphotel

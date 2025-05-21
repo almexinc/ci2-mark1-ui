@@ -1,7 +1,70 @@
 <RCC>
     <qresource prefix="/">
+        <file>qtquickcontrols2.conf</file>
         <file>qml/Main.qml</file>
         <file>qml/views/m0_0_0_InitPage.qml</file>
         <file>qml/views/te0_0_1_TestIdle.qml</file>
+
+        <file>language.js</file>
+        <file>view/common</file>
+        <file>view/common/background</file>
+        <file>view/common/background/BackgroundBase.qml</file>
+        <file>view/common/base</file>
+        <file>view/common/base/BaseButton.qml</file>
+        <file>view/common/base/BaseImage.qml</file>
+        <file>view/common/base/BaseLabel.qml</file>
+        <file>view/common/base/BaseScrollBar.qml</file>
+        <file>view/common/base/BaseText.qml</file>
+        <file>view/common/base/BaseTextField.qml</file>
+        <file>view/common/button</file>
+        <file>view/common/button/CancelButton.qml</file>
+        <file>view/common/button/ConfirmButton.qml</file>
+        <file>view/common/button/FlatButton.qml</file>
+        <file>view/common/button/GradientButton.qml</file>
+        <file>view/common/button/KeyBoardButton.qml</file>
+        <file>view/common/button/LanguageButton.qml</file>
+        <file>view/common/button/MenuButton.qml</file>
+        <file>view/common/button/MenuButtonGridview.qml</file>
+        <file>view/common/button/NextButton.qml</file>
+        <file>view/common/button/OptionButton.qml</file>
+        <file>view/common/button/OptionButtonGridview.qml</file>
+        <file>view/common/button/PrevButton.qml</file>
+        <file>view/common/button/SolidButton.qml</file>
+        <file>view/common/button/VideoButton.qml</file>
+        <file>view/common/contents</file>
+        <file>view/common/contents/Content.qml</file>
+        <file>view/common/contents/MainContent.qml</file>
+        <file>view/common/debug</file>
+        <file>view/common/debug/DebugButton.qml</file>
+        <file>view/common/debug/DebugLabel.qml</file>
+        <file>view/common/parts</file>
+        <file>view/common/parts/DefaultTextField.qml</file>
+        <file>view/common/parts/Footer.qml</file>
+        <file>view/common/parts/Header.qml</file>
+        <file>view/common/parts/KeyboardPopup.qml</file>
+        <file>view/common/parts/LanguageButtonList.qml</file>
+        <file>view/common/parts/ProgressCircle.qml</file>
+        <file>view/common/parts/ScrollContent.qml</file>
+        <file>view/common/text</file>
+        <file>view/common/text/DefaultText.qml</file>
+        <file>view/common/text/NowDateTimeText.qml</file>
+        <file>view/common/text/TitleText.qml</file>
+        <file>view/Constants.qml</file>
+        <file>view/mainView.qml</file>
+        <file>view/pages</file>
+        <file>view/pages/SF2-11_ReservationByPhone.qml</file>
+        <file>view/pages/SF2-1_Idle.qml</file>
+        <file>view/pages/SF2-2_TermsAndConditions.qml</file>
+        <file>view/pages/SF2-3_CheckInSelection.qml</file>
+        <file>view/pages/SF2-4_ReservationByNumber.qml</file>
+        <file>view/pages/SF2-5_ReservationByName.qml</file>
+        <file>view/pages/SF2-6_ReservationByQR.qml</file>
+        <file>view/pages/SF2-7_ReservationByPreCard.qml</file>
+        <file>view/pages/SF2-8_ReservationByICTag.qml</file>
+        <file>view/sample</file>
+        <file>view/sample/Sample1.qml</file>
+        <file>view/sample/Sample2.qml</file>
+        <file>view/sample/Sample3.qml</file>
+
     </qresource>
 </RCC>

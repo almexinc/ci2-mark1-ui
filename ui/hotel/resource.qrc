@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/">
+        <file>fonts/NotoSansJP-Regular.ttf</file>
+        <file>fonts/NotoSansKR-Regular.ttf</file>
+        <file>fonts/NotoSansSC-Regular.ttf</file>
+        <file>fonts/NotoSansTaiViet-Regular.ttf</file>
+        <file>fonts/NotoSansThai-Regular.ttf</file>
+        <file>img/icon/arron_prev.png</file>
+        <file>img/icon/arrow_backspace.png</file>
+        <file>img/icon/arrow_right.png</file>
+        <file>img/icon/check.png</file>
+        <file>img/icon/qr.png</file>
+        <file>img/icon/reset.png</file>
+        <file>img/icon/scroll_arrow.png</file>
+        <file>img/icon/selected.png</file>
+        <file>img/sample.jpg</file>
+        <file>img/logo.png</file>
+        <file>img/sample_image.png</file>
+        <file>img/sample_virtual_human.png</file>
+        <file>img/scroll_button_bottom.png</file>
+        <file>img/scroll_button_top.png</file>
+        <file>img/scroll.png</file>
+    </qresource>
+</RCC>
