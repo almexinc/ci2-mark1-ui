@@ -23,6 +23,28 @@ Window {
 
     property alias constants: _constants
 
+    function pushScreen(qmlFileName) {
+        qmlFileName = "qrc:/view/pages/" + qmlFileName + ".qml";
+
+        sharedController.qmlLogInfo("pushScreen: " + qmlFileName );
+
+        let qmlComponent = Qt.createComponent( qmlFileName );
+
+        if ( !qmlComponent ) {
+            sharedController.qmlLogError( "画面生成に失敗しました。" );
+        } else if ( qmlComponent.errorString() ) {
+            sharedController.qmlLogError( qmlComponent.errorString() );
+        } else {
+            // 現在画面のクリア
+            _stackView.clear( StackView.Immediate );
+            _stackView.push( qmlComponent, {qmlFileName: qmlFileName}, StackView.Immediate );
+        }
+    }
+
+    Component.onCompleted: {
+        _mainview.pushScreen("SF0-0_InitPage")
+    }
+
     Constants{
         id: _constants
     }
@@ -31,6 +53,15 @@ Window {
     StackView {
         id: _stackView
         anchors.fill: parent
+    }
+
+    // C++側関数からQML処理を呼び出す
+    Connections {
+        target: sharedController
+
+        function onQmlFilePushScreen(qmlFileName) {
+            _mainview.pushScreen(qmlFileName);
+        }
     }
 
     /***画面表示デバック用***/
@@ -146,7 +177,7 @@ Window {
         property int pageIndex: 0 //デバック表示用のページ目次
         property string pageDirectoryName: "./" //ページQML置き場の名前
         Component.onCompleted: {
-            read(pageDirectoryName + pageList[pageIndex]) //初回起動画面読み込み
+            // read(pageDirectoryName + pageList[pageIndex]) //初回起動画面読み込み
         }
         /**
          * @brief 画面遷移を実行する

@@ -52,6 +52,7 @@
         <file>view/Constants.qml</file>
         <file>view/mainView.qml</file>
         <file>view/pages</file>
+        <file>view/pages/SF0-0_InitPage.qml</file>
         <file>view/pages/SF2-11_ReservationByPhone.qml</file>
         <file>view/pages/SF2-1_Idle.qml</file>
         <file>view/pages/SF2-2_TermsAndConditions.qml</file>

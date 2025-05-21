@@ -4,13 +4,27 @@
 
 import QtQuick
 import QtQuick.Effects
+import QtQuick.Controls
 import "../common/button"
 import "../common/contents"
 import "../common/background"
 import "../common/text"
 import "../common/base"
 
+import Almex.Hotel 1.0
+
 Content {
+    property string qmlFileName: "" // push時に設定される
+
+    StackView.onRemoved: {
+        sharedController.qmlLogInfo("StackView.onRemoved: " + qmlFileName)
+        _vm.onRemoved()
+    }
+
+    Component.onCompleted: {
+        sharedController.qmlLogInfo("Component.onCompleted: " + qmlFileName)
+    }
+
     isShowLanguageButton: true
 
     MainContent {
@@ -235,5 +249,10 @@ Content {
         onTriggered: {
             _vm.getNowDataTime()
         }
+    }
+
+    SF2_1_Idle {
+        // TODO: stubを解除して使う
+        //id: _vm
     }
 }

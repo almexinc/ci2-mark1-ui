@@ -50,8 +50,10 @@ signals:
     void mqttMessageSend(const QString &topic, const QByteArray &message);
 
     /**
-     * @brief 指定の .qml ファイルを読み込むことを通知
-     * @param qmlFileName .qml QMLファイル名。例） qrc:/qml/views/Test.qml なら Test だけ指定する
+     * @brief 指定の .qml ファイルを読み込み、画面遷移する
+     * NOTE: 画面遷移を呼ぶと、onRemovedまで関数コールで呼ばれる点に注意（emitが終わったらonRemovedも呼ばれてしまう）
+     *
+     * @param qmlFileName .qml QMLファイル名。例） qrc:/views/pages/Test.qml なら Test だけ指定する
      */
     void qmlFilePushScreen(const QString &qmlFileName);
 
