@@ -50,10 +50,10 @@ private:
     {
     public:
         struct LogData {
-            QString level;
-            QString datetime;
-            QString fileName;
-            QString text;
+            QString _level;
+            QString _datetime;
+            QString _fileName;
+            QString _text;
 
             QString createLogText() const;
         };

@@ -9,6 +9,10 @@ set(COMMON_BUILD_CPP_SOURCES
     ../common/src/controller/sharedcontroller.h
     ../common/src/controller/uisettingcontroller.cpp
     ../common/src/controller/uisettingcontroller.h
+    ../common/src/topics/topics.cpp
+    ../common/src/topics/topics.h
+    ../common/src/topics/testtopic.cpp
+    ../common/src/topics/testtopic.h
     ../common/src/utils/logger.cpp
     ../common/src/utils/logger.h
 )

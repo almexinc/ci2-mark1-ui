@@ -1,5 +1,7 @@
 ﻿#include "te0_0_1_testidle.h"
 
+#include <QByteArray>
+
 #include "common/src/controller/sharedcontroller.h"
 #include "common/src/utils/logger.h"
 
@@ -8,6 +10,10 @@ TE0_0_1_TestIdle::TE0_0_1_TestIdle(QObject *parent)
 {
     Logger::info(metaObject()->className(), __FUNCTION__, "コンストラクタコール");
     connect(SharedController::getInstance(), &SharedController::mqttMessageReceived, this, &TE0_0_1_TestIdle::mqttMessageReceived);
+
+    // MQTTでリクエストを投げるサンプル処理
+    auto [topicName, jsonBody] = this->_testTopic.requestStartRead();
+    emit SharedController::getInstance() -> mqttMessageSend(topicName, jsonBody);
 }
 
 TE0_0_1_TestIdle::~TE0_0_1_TestIdle()
@@ -37,5 +43,16 @@ void TE0_0_1_TestIdle::mqttMessageReceived(const QString &topic, const QByteArra
 {
     Logger::info(metaObject()->className(), __FUNCTION__, "topic: " + topic + ", message: " + message);
 
-    // TODO: 処理したいトピック名を多数並べて、一致したトピックのメッセージを処理する
+    auto result = this->_testTopic.checkTopic(topic, message);
+
+    if (result == CheckTopicType::E_RESULT) {
+        auto resultData = this->_testTopic.getResultData();
+        qInfo() << "resultData: " << resultData._readId;
+        return;
+
+    } else if (result == CheckTopicType::E_NOTICE) {
+        auto noticeData = this->_testTopic.getNoticeData();
+        qInfo() << "noticeData: " << noticeData._readId;
+        return;
+    }
 }

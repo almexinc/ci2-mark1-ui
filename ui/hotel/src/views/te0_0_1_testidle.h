@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QQmlEngine>
 
+#include "common/src/topics/testtopic.h"
+
 class TE0_0_1_TestIdle : public QObject
 {
     Q_OBJECT
@@ -27,6 +29,8 @@ private:
      * @param message メッセージ本文
      */
     void mqttMessageReceived(const QString &topic, const QByteArray &message);
+
+    TestTopic _testTopic; // TestTopic を送受信する
 };
 
 #endif // TE____1_TESTIDLE_H

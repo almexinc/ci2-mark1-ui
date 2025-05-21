@@ -111,12 +111,12 @@ void LogController::LogWriter::addLog(const QString &level, const QString &text,
         return;
     }
     LogData log;
-    log.level    = level;
-    log.text     = text;
-    log.datetime = QDateTime::currentDateTime().toString("yyyy/MM/dd HH:mm:ss.zzz");
-    log.fileName = logOutputFilePath;
+    log._level    = level;
+    log._text     = text;
+    log._datetime = QDateTime::currentDateTime().toString("yyyy/MM/dd HH:mm:ss.zzz");
+    log._fileName = logOutputFilePath;
 
-    if (!log.text.isEmpty()) {
+    if (!log._text.isEmpty()) {
         this->_mutex.lock();
         this->_queue.append(log);
         this->_mutex.unlock();
@@ -145,7 +145,7 @@ void LogController::LogWriter::writeLog()
     auto logData = this->_queue.takeFirst();
     this->_mutex.unlock();
 
-    QFile file(logData.fileName);
+    QFile file(logData._fileName);
     if (file.open(QIODevice::WriteOnly | QIODevice::Append)) {
         QTextStream stream(&file);
         stream.setEncoding(QStringConverter::Utf8);
@@ -156,15 +156,15 @@ void LogController::LogWriter::writeLog()
         file.flush();
         file.close();
     } else {
-        qInfo() << "Coundn't access to file:" << logData.fileName;
+        qInfo() << "Coundn't access to file:" << logData._fileName;
     }
 }
 
 QString LogController::LogWriter::LogData::createLogText() const
 {
     // 一番長いFATALの長さに合わせる
-    QString toLevel = level.isEmpty() ? "     " : level;
-    auto    toText  = text;
+    QString toLevel = _level.isEmpty() ? "     " : _level;
+    auto    toText  = _text;
     toText.replace("\n", "");
-    return QString("%1 %2 %3").arg(datetime, toLevel, toText);
+    return QString("%1 %2 %3").arg(_datetime, toLevel, toText);
 }

@@ -3,6 +3,7 @@
 ****************************************************************************/
 #include "mqttcontroller.h"
 
+#include "common/src/topics/topics.h"
 #include "common/src/utils/logger.h"
 
 MqttController::MqttController(QObject *parent)
@@ -15,7 +16,12 @@ MqttController::MqttController(QObject *parent)
 
     // Mqttクライアントから通知されるsignalに対するslotのconnect設定
     // 接続時
-    connect(&this->_qMqttClient, &QMqttClient::connected, this, []() { qInfo() << "Connected to MQTT broker"; });
+    connect(&this->_qMqttClient, &QMqttClient::connected, this, []() {
+        qInfo() << "Connected to MQTT broker";
+
+        // TODO: サブスクライブする
+        // auto topicNameList = Topics::getResultTopicNameList();
+    });
 
     // Mqttクライアントから通知されるsignalに対するslotのconnect設定
     // メッセージ受信時
