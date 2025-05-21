@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
  * @file: mainView.qml
  * @brief: QML処理の初回に読み込まれるQML
  *
@@ -153,11 +153,12 @@ Window {
          * @param 画面遷移したいQMLファイル名をセット
          */
         function read(qmlFile) {
+            sharedController.qmlLogInfo("create qml: " + qmlFile )
             let qmlComponent = Qt.createComponent(qmlFile)
             if (!qmlComponent) {
-                console.log("component create failed")
+                sharedController.qmlLogError("component create failed")
             } else if (qmlComponent.errorString()) {
-                console.log(qmlComponent.errorString())
+                sharedController.qmlLogError(qmlComponent.errorString())
             } else {
                 _stackView.clear()
                 _stackView.push(qmlComponent, StackView.Immediate)
