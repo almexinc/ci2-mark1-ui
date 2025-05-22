@@ -4,7 +4,9 @@
 #ifndef MQTTCONTROLLER_H
 #define MQTTCONTROLLER_H
 
+#include <QFuture>
 #include <QMqttClient>
+#include <QMutex>
 #include <QObject>
 
 class MqttController : public QObject
@@ -12,6 +14,7 @@ class MqttController : public QObject
     Q_OBJECT
 public:
     explicit MqttController(QObject *parent = nullptr);
+    ~MqttController();
 
     /**
      * @brief MQTTクライアントの初期化を行います。接続まで行われます。
@@ -37,7 +40,16 @@ signals:
     void disconnected();
 
 private:
-    QMqttClient *_qMqttClient;
+    struct MqttSender {
+        QString    topic;
+        QByteArray message;
+    };
+
+    QMqttClient      *_qMqttClient;
+    QList<MqttSender> _mqttSenders;
+    QMutex            _senderMutex;
+    QFuture<void>     _mqttSenderThread;
+    bool              _senderRunning;
 };
 
 #endif // MQTTCONTROLLER_H
