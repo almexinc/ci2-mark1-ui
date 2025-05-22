@@ -1,12 +1,17 @@
 ﻿#include "sharedcontroller.h"
 
+#include "common/src/controller/uisettingcontroller.h"
 #include "common/src/utils/logger.h"
 
 SharedController::SharedController()
     : QObject { nullptr }
 {
     this->_mqttController = new MqttController(this);
-    this->_mqttController->init("localhost", 1883, "user", "password"); // TODO: 設定ファイルから読み込ませる
+
+    {
+        auto [hostName, port, username, password] = UiSettingController::getInstance()->getMqttSetting();
+        this->_mqttController->init(hostName, port, username, password);
+    }
 
     // MQTTメッセージを受け取り、再びシグナルを発行する
     connect(this->_mqttController, &MqttController::messageReceived, this, [this](const QString &topic, const QByteArray &message) {

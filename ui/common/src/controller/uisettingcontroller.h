@@ -25,6 +25,12 @@ public:
      */
     int getLogSaveDays() const;
 
+    /**
+     * @brief MQTTの接続設定を取得する
+     * @return std::tuple<QString, quint16, QString, QString> ホスト名、ポート番号、ユーザ名、パスワード
+     */
+    std::tuple<QString, quint16, QString, QString> getMqttSetting() const;
+
 signals:
 
 private:

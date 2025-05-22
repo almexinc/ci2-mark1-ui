@@ -1,3 +1,13 @@
 log_setting:
   # ログの保存日数。設定可能最小値は2。最大値はint型の最大値。
   save_days: 365
+
+mqtt:
+  # MQTTの接続先URL
+  host_name: localhost
+  # MQTTのポート番号
+  port: 1883
+  # MQTTのユーザ名
+  user: user
+  # MQTTのパスワード
+  password: password

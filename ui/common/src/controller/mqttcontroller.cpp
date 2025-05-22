@@ -9,14 +9,13 @@
 MqttController::MqttController(QObject *parent)
     : QObject(parent)
 {
-#ifdef GTO_DEBUG
     this->_qMqttClient = new QMqttClient(this);
     this->_qMqttClient->setAutoKeepAlive(true);
     this->_qMqttClient->setKeepAlive(1000);
 
     // Mqttクライアントから通知されるsignalに対するslotのconnect設定
     // 接続時
-    connect(&this->_qMqttClient, &QMqttClient::connected, this, []() {
+    connect(this->_qMqttClient, &QMqttClient::connected, this, []() {
         qInfo() << "Connected to MQTT broker";
 
         // TODO: サブスクライブする
@@ -25,22 +24,24 @@ MqttController::MqttController(QObject *parent)
 
     // Mqttクライアントから通知されるsignalに対するslotのconnect設定
     // メッセージ受信時
-    connect(&this->_qMqttClient, &QMqttClient::messageReceived, this, &MqttController::messageReceived);
-
-    // Mqttクライアントから通知されるsignalに対するslotのconnect設定
-    // メッセージ変更時
-    connect(&this->_qMqttClient, &QMqttClient::willMessageChanged, this, []() { qInfo() << "Will message changed"; });
+    connect(this->_qMqttClient, &QMqttClient::messageReceived, this, [this](const QByteArray &message, const QMqttTopicName &topic) {
+        qInfo() << "Message received on topic:" << topic.name() << ", message:" << message;
+    });
 
     // Mqttクライアントから通知されるsignalに対するslotのconnect設定
     // 切断時
-    connect(&this->_qMqttClient, &QMqttClient::disconnected, this, []() { qInfo() << "Disconnected from MQTT broker"; });
-#endif // GTO_DEBUG
+    connect(this->_qMqttClient, &QMqttClient::disconnected, this, [this]() {
+        qInfo() << "Disconnected from MQTT broker";
+
+        // 再接続する
+        this->_qMqttClient->connectToHost();
+    });
 
     // TODO: 仮
-    // this->_qMqttClient->setHostname("localhost");
-    // this->_qMqttClient->setPort(1883);
-    // this->_qMqttClient->setProtocolVersion(QMqttClient::MQTT_5_0);
-    // this->_qMqttClient->connectToHost();
+    this->_qMqttClient->setHostname("localhost");
+    this->_qMqttClient->setPort(1883);
+    this->_qMqttClient->setProtocolVersion(QMqttClient::MQTT_5_0);
+    this->_qMqttClient->connectToHost();
 }
 
 /**
@@ -53,18 +54,12 @@ MqttController::MqttController(QObject *parent)
  */
 void MqttController::init(const QString &hostName, quint16 port, const QString &username, const QString &password)
 {
-    Q_UNUSED(hostName);
-    Q_UNUSED(port);
-    Q_UNUSED(username);
-    Q_UNUSED(password);
-#ifdef GTO_DEBUG
     this->_qMqttClient->setHostname(hostName);
     this->_qMqttClient->setPort(port);
     this->_qMqttClient->setProtocolVersion(QMqttClient::MQTT_5_0);
     this->_qMqttClient->setUsername(username);
     this->_qMqttClient->setPassword(password);
     this->_qMqttClient->connectToHost();
-#endif // GTO_DEBUG
 }
 
 /**

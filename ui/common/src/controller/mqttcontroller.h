@@ -4,9 +4,7 @@
 #ifndef MQTTCONTROLLER_H
 #define MQTTCONTROLLER_H
 
-#ifdef GTO_DEBUG
 #include <QMqttClient>
-#endif // GTO_DEBUG
 #include <QObject>
 
 class MqttController : public QObject
@@ -39,9 +37,7 @@ signals:
     void disconnected();
 
 private:
-#ifdef GTO_DEBUG
     QMqttClient *_qMqttClient;
-#endif // GTO_DEBUG
 };
 
 #endif // MQTTCONTROLLER_H
