@@ -31,6 +31,12 @@ public:
      */
     std::tuple<QString, quint16, QString, QString> getMqttSetting() const;
 
+    /**
+     * @brief ダミーの使用有無を取得する。
+     * QList<QString>に含まれるカテゴリーが利用される。
+     */
+    QList<QString> getDummyResponse() const;
+
 signals:
 
 private:

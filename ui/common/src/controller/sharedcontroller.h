@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QQmlEngine>
 
+#include "common/src/utils/dummyresponse.h"
 #include "mqttcontroller.h"
 
 class SharedController : public QObject
@@ -60,6 +61,7 @@ signals:
 private:
     SharedController();
     MqttController *_mqttController;
+    DummyResponse   _dummyResponse; // 送信処理に合わせて DummyResponse を使用する
 };
 
 #endif // SHAREDCONTROLLER_H

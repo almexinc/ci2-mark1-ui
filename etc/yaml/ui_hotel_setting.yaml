@@ -11,3 +11,11 @@ mqtt:
   user: user
   # MQTTのパスワード
   password: password
+
+# autotestは、MQTTメッセージの送信に合わせて動作確認のタミーpublishを行う設定。
+# ダミーは etc/dummy/ 配下にあるファイルを読み込み、targetの名前と一致する・categoryと一致するものをpublishする。
+# false: ダミーをpublishしない
+# true: ダミーをpublishする
+autotest:
+  qr_service: true
+  print_service: false

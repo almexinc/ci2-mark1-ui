@@ -1,5 +1,6 @@
 ﻿#include "sharedcontroller.h"
 
+#include "common/src/controller/resourcecontroller.h"
 #include "common/src/controller/uisettingcontroller.h"
 #include "common/src/utils/logger.h"
 
@@ -9,6 +10,7 @@ SharedController::SharedController()
     this->_mqttController = new MqttController(this);
 
     {
+        // MQTTの環境構築
         auto [hostName, port, username, password] = UiSettingController::getInstance()->getMqttSetting();
         this->_mqttController->init(hostName, port, username, password);
     }
@@ -22,8 +24,19 @@ SharedController::SharedController()
     connect(this, &SharedController::mqttMessageSend, this->_mqttController, [this](const QString &topic, const QByteArray &message) {
         this->_mqttController->sendMessage(topic, message);
 
-        // TODO: ダミーデータの送信
+        // 有効なダミーデータがあれば、ダミーのレスポンスを送信する
+        this->_dummyResponse.sendDummyResponse(topic);
     });
+
+    {
+        // ダミーレスポンスの環境構築
+        this->_dummyResponse.init(ResourceController::getInstance()->getDummyResponseDirPath(), UiSettingController::getInstance()->getDummyResponse());
+        // ダミーデータの解析後にMQTTへの送信シグナルを発行する
+        connect(&this->_dummyResponse, &DummyResponse::dummyPublish, this, [this](const QString &topicName, const QByteArray &message) {
+            // ダミーのレスポンスをMQTTに送信する（通常は自分でサブスクライブしているのでそのまま自分で受け取ることになる）
+            emit this->_mqttController->sendMessage(topicName, message);
+        });
+    }
 }
 
 SharedController *SharedController::getInstance()

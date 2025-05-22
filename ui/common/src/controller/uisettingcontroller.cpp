@@ -95,3 +95,38 @@ std::tuple<QString, quint16, QString, QString> UiSettingController::getMqttSetti
     }
     return { "localhost", 1883, "user", "password" };
 }
+
+/**
+ * @brief ダミーの使用有無を取得する。
+ * QList<QString>に含まれるカテゴリーが利用される。
+ */
+QList<QString> UiSettingController::getDummyResponse() const
+{
+    // 構造
+    // autotest:
+    //   qr_service: true
+    //   print_service: false
+
+    try {
+        QList<QString> useDummyList;
+        for (const auto &category : this->_config["autotest"]) {
+            // 使用するダミーの設定かどうかを取得する
+            if (category.second.as<bool>()) {
+                // 定義してあるパラメータ名そのものを取得して設定する
+                useDummyList.append(QString::fromStdString(category.first.as<std::string>()));
+            }
+        }
+
+        // autotestでtrueになっているパラメータ名の一覧を返却する
+        return useDummyList;
+    } catch (const YAML::Exception &e) {
+        // YAMLの例外条件
+        // 1. autotestが存在しない場合
+        // 2. autotestの中にtrue/falseが存在しない場合
+
+        Logger::error(metaObject()->className(), __FUNCTION__, "ダミー設定が見つかりません。デフォルト値を返します。エラーメッセージ: " + QString::fromStdString(e.what()));
+    }
+
+    // 空
+    return {};
+}

@@ -42,3 +42,8 @@ QString ResourceController::getSettingDirPath() const
 {
     return this->_rootDir.absolutePath() + "/etc/yaml";
 }
+
+QString ResourceController::getDummyResponseDirPath() const
+{
+    return this->_rootDir.absolutePath() + "/etc/dummy";
+}

@@ -1,0 +1,26 @@
+{
+    "target": "/almex/device/test/request_test_topic",
+    "category": "qr_service",
+    "responses": [
+        {
+            "sendTopic": "/almex/device/test/result_test_topic",
+            "startDelayMs": 1000,
+            "response": {
+                "type": "text",
+                "text": {
+                    "content": "Hello, how can I assist you today?"
+                }
+            }
+        },
+        {
+            "sendTopic": "/almex/device/test/notice_test_topic",
+            "startDelayMs": 500,
+            "response": {
+                "type": "text",
+                "text": {
+                    "content": "Hello, how can I assist you today?"
+                }
+            }
+        }
+    ]
+}

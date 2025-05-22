@@ -15,4 +15,6 @@ set(COMMON_BUILD_CPP_SOURCES
     ../common/src/topics/testtopic.h
     ../common/src/utils/logger.cpp
     ../common/src/utils/logger.h
+    ../common/src/utils/dummyresponse.cpp
+    ../common/src/utils/dummyresponse.h
 )
