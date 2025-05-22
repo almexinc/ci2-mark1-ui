@@ -3,6 +3,7 @@
 ****************************************************************************/
 
 import QtQuick
+import QtQuick.Controls
 import "../common/button"
 import "../common/contents"
 import "../common/background"
@@ -10,7 +11,16 @@ import "../common/text"
 import "../common/base"
 import "../common/parts"
 
+import Almex.Hotel 1.0
+
 Content {
+    property string qmlFileName: "" // push時に設定される
+
+    StackView.onRemoved: {
+        sharedController.qmlLogInfo("StackView.onRemoved: " + qmlFileName)
+        _vm.onRemoved()
+    }
+
     isShowLanguageButton: false
     isShowResetButton: true
     function updateNextButtonState() {
@@ -115,6 +125,10 @@ Content {
 
             _vm.nowTime = parseInt(hour + minute, 10); // 結合して数値に変換
         }
+
+        function onRemoved() {
+            console.log("onRemoved")
+        }
     }
     // （スタブ内だけの利用）現在時刻の更新用のタイマー
     Timer {
@@ -123,5 +137,10 @@ Content {
         onTriggered: {
             _vm.getNowDataTime()
         }
+    }
+
+    SF2_7_ReservationByPreCard {
+        // TODO: stubを解除して使う
+        //id: _vm
     }
 }

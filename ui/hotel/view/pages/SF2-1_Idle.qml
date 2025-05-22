@@ -241,6 +241,10 @@ Content {
 
             _vm.nowTime = parseInt(hour + minute, 10); // 結合して数値に変換
         }
+
+        function onRemoved() {
+            console.log("onRemoved")
+        }
     }
     // （スタブ内だけの利用）現在時刻の更新用のタイマー
     Timer {
