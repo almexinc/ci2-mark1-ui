@@ -37,6 +37,7 @@ MqttController::MqttController(QObject *parent)
     // メッセージ受信時
     connect(this->_qMqttClient, &QMqttClient::messageReceived, this, [this](const QByteArray &message, const QMqttTopicName &topic) {
         Logger::info(metaObject()->className(), __FUNCTION__, "Mqtt Message Receive topic: " + topic.name() + ", message: " + message);
+        emit this->messageReceived(topic.name(), message);
     });
 
     // Mqttクライアントから通知されるsignalに対するslotのconnect設定
