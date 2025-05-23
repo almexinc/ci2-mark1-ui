@@ -44,6 +44,12 @@ public:
      */
     void nextScreen(const QString &screenId, int condition);
 
+    /**
+     * @brief 言語切り替えボタンが押下された際に呼ばれるメソッド
+     * @param languageCode 切り替わった言語コード
+     */
+    Q_INVOKABLE void changeLanguageCodeForQml(const QString &languageCode);
+
 signals:
     /**
      * @brief MQTTメッセージ受信時に通知されるシグナル
@@ -68,6 +74,13 @@ signals:
      * @param qmlFileName .qml QMLファイル名。例） qrc:/views/pages/Test.qml なら Test だけ指定する
      */
     void qmlFilePushScreen(const QString &qmlFileName);
+
+    /**
+     * @brief 言語切り替え時に通知されるシグナル
+     * 主に動的にメッセージを変更する必要がある画面でconnectして使用する
+     * @param languageCode 切り替わった言語コード
+     */
+    void changeLanguageCode(const QString &languageCode);
 
 private:
     SharedController();

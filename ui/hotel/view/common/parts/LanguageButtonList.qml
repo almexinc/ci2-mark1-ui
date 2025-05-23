@@ -30,6 +30,7 @@ Row {
                 constants.languageCode = modelData.languageCode
 
                 console.log(modelData.languageCode + "押下")
+                sharedController.changeLanguageCodeForQml(modelData.languageCode)
             }
         }
     }

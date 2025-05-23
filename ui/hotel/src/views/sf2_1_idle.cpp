@@ -14,6 +14,11 @@ SF2_1_Idle::SF2_1_Idle(QObject *parent)
 
     // MQTTメッセージ受信シグナルを接続
     connect(SharedController::getInstance(), &SharedController::mqttMessageReceived, this, &SF2_1_Idle::mqttMessageReceived);
+
+    // TODO: サンプル。言語切替えボタン押下シグナルを接続
+    connect(SharedController::getInstance(), &SharedController::changeLanguageCode, this, [this](const QString &languageCode) {
+        Logger::info(metaObject()->className(), __FUNCTION__, "言語切替えボタン押下: " + languageCode);
+    });
 }
 
 /**

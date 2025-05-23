@@ -80,3 +80,13 @@ void SharedController::nextScreen(const QString &screenId, int condition)
     auto name = ScreenTransitionController::getInstance()->getNextScreen(screenId, condition);
     emit this->qmlFilePushScreen(name);
 }
+
+/**
+ * @brief QML側で言語切り替えボタンが押下された際に呼ばれるメソッド
+ * @param languageCode 切り替わった言語コード
+ */
+void SharedController::changeLanguageCodeForQml(const QString &languageCode)
+{
+    Logger::info("SharedController", __FUNCTION__, "言語切り替え: " + languageCode);
+    emit this->changeLanguageCode(languageCode);
+}
