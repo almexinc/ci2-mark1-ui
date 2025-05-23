@@ -93,8 +93,7 @@ Content {
         }
     }
 
-    // stub::
-    QtObject {
+    SF2_6_ReservationByQR {
         id: _vm
         property int nowDate: 20241024 //現在日付
         property int nowTime: 1212 //現在時刻
@@ -139,10 +138,5 @@ Content {
         onTriggered: {
             _vm.getNowDataTime()
         }
-    }
-
-    SF2_6_ReservationByQR {
-        // TODO: stubを解除して使う
-        //id: _vm
     }
 }
