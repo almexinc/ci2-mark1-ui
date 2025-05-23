@@ -34,7 +34,7 @@ void SF2_6_ReservationByQR::init()
 
     // TODO: 画面遷移と同時にQRの読み込みを開始するイメージ
     auto [topic, message] = _testTopic.requestStartRead();
-    SharedController::getInstance()->mqttMessageSend(topic, message);
+    emit SharedController::getInstance()->mqttMessageSend(topic, message);
 
     // 初期化完了通知
     Logger::info(metaObject()->className(), __FUNCTION__, "初期化処理完了");

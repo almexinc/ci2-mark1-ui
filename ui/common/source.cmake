@@ -11,6 +11,8 @@ set(COMMON_BUILD_CPP_SOURCES
     ../common/src/controller/uisettingcontroller.h
     ../common/src/controller/screentransitioncontroller.h
     ../common/src/controller/screentransitioncontroller.cpp
+    ../common/src/controller/cachecontroller.cpp
+    ../common/src/controller/cachecontroller.h
     ../common/src/topics/topics.cpp
     ../common/src/topics/topics.h
     ../common/src/topics/testtopic.cpp

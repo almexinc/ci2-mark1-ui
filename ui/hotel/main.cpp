@@ -10,6 +10,7 @@
 #include <QUrl>
 #include <QtQml>
 
+#include "common/src/controller/cachecontroller.h"
 #include "common/src/controller/logcontroller.h"
 #include "common/src/controller/mqttcontroller.h"
 #include "common/src/controller/resourcecontroller.h"
@@ -51,6 +52,9 @@ int main(int argc, char *argv[])
 
     // ログの削除&定期削除開始
     LogController::getInstance()->startIntervalDeleteLog(uiSettingController->getLogSaveDays());
+
+    // キャッシュコントローラーのセットアップ
+    CacheController::getInstance()->clear();
 
     // 画面遷移コントローラーのセットアップ
     auto *screenTransitionController = ScreenTransitionController::getInstance();
