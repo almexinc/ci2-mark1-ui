@@ -63,6 +63,11 @@ Content {
             subText: "から照会"
             subFontPixelSize: "38"
             menuButtonList: _vm.menuButtonList
+            onButtonClicked: function(condition) {
+                // TODO: conditionは仮置き
+                condition = 2
+                _vm.menuButtonClicked(condition)
+            }
         }
 
 
@@ -83,9 +88,10 @@ Content {
         }
     }
 
-    // stub::
-    QtObject {
+    SF2_3_CheckInSelection {
         id: _vm
+
+        // TODO: スタブ
         property int nowDate: 20241024 //現在日付
         property int nowTime: 1212 //現在時刻
         property string hotelName: "アルメックスホテル浅草" //ホテル名
@@ -123,10 +129,6 @@ Content {
 
             _vm.nowTime = parseInt(hour + minute, 10); // 結合して数値に変換
         }
-
-        function onRemoved() {
-            console.log("onRemoved")
-        }
     }
     // （スタブ内だけの利用）現在時刻の更新用のタイマー
     Timer {
@@ -135,10 +137,5 @@ Content {
         onTriggered: {
             _vm.getNowDataTime()
         }
-    }
-
-    SF2_3_CheckInSelection {
-        // TODO: stubを解除して使う
-        //id: _vm
     }
 }
