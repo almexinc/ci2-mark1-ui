@@ -1,4 +1,7 @@
-﻿#ifndef SF2_2_TERMSANDCONDITIONS_H
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#ifndef SF2_2_TERMSANDCONDITIONS_H
 #define SF2_2_TERMSANDCONDITIONS_H
 
 #include <QObject>

@@ -1,4 +1,7 @@
-﻿#include "screentransitioncontroller.h"
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#include "screentransitioncontroller.h"
 
 #include <QFile>
 #include <QJsonArray>

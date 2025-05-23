@@ -1,4 +1,7 @@
-﻿#ifndef SF2_3_CHECKINSELECTION_H
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#ifndef SF2_3_CHECKINSELECTION_H
 #define SF2_3_CHECKINSELECTION_H
 
 #include <QObject>

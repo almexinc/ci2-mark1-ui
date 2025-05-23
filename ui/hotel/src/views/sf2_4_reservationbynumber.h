@@ -1,4 +1,7 @@
-﻿#ifndef SF2_4_RESERVATIONBYNUMBER_H
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#ifndef SF2_4_RESERVATIONBYNUMBER_H
 #define SF2_4_RESERVATIONBYNUMBER_H
 
 #include <QObject>

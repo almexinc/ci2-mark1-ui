@@ -1,4 +1,7 @@
-﻿#ifndef SHAREDCONTROLLER_H
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#ifndef SHAREDCONTROLLER_H
 #define SHAREDCONTROLLER_H
 
 #include <QObject>

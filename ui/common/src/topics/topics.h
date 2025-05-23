@@ -1,4 +1,7 @@
-﻿#ifndef TOPICS_H
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#ifndef TOPICS_H
 #define TOPICS_H
 
 #include <QObject>

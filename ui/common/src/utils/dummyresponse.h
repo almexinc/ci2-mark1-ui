@@ -1,4 +1,7 @@
-﻿#ifndef DUMMYRESPONSE_H
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#ifndef DUMMYRESPONSE_H
 #define DUMMYRESPONSE_H
 
 #include <QDir>

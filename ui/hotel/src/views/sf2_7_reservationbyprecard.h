@@ -1,4 +1,7 @@
-﻿#ifndef SF2_7_RESERVATIONBYPRECARD_H
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#ifndef SF2_7_RESERVATIONBYPRECARD_H
 #define SF2_7_RESERVATIONBYPRECARD_H
 
 #include <QObject>

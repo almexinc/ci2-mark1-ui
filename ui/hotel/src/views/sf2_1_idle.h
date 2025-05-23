@@ -1,4 +1,7 @@
-﻿#ifndef SF2_1_IDLE_H
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#ifndef SF2_1_IDLE_H
 #define SF2_1_IDLE_H
 
 #include <QObject>

@@ -1,4 +1,8 @@
-﻿#include "dummyresponse.h"
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+
+#include "dummyresponse.h"
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>

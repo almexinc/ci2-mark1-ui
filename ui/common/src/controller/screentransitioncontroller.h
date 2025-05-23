@@ -1,4 +1,7 @@
-﻿#ifndef SCREENTRANSITIONCONTROLLER_H
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#ifndef SCREENTRANSITIONCONTROLLER_H
 #define SCREENTRANSITIONCONTROLLER_H
 
 #include <QMap>

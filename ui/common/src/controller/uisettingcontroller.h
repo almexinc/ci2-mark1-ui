@@ -1,4 +1,7 @@
-﻿#ifndef UISETTINGCONTROLLER_H
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#ifndef UISETTINGCONTROLLER_H
 #define UISETTINGCONTROLLER_H
 
 #include <QObject>

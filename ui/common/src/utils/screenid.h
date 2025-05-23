@@ -1,4 +1,7 @@
-﻿#ifndef SCREENNAME_H
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#ifndef SCREENNAME_H
 #define SCREENNAME_H
 
 #include <QString>

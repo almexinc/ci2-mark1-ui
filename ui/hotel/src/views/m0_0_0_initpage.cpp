@@ -1,4 +1,7 @@
-﻿#include "m0_0_0_initpage.h"
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#include "m0_0_0_initpage.h"
 
 #include "common/src/controller/sharedcontroller.h"
 #include "common/src/utils/logger.h"

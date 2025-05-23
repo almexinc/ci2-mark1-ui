@@ -1,4 +1,7 @@
-﻿#include "uisettingcontroller.h"
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#include "uisettingcontroller.h"
 
 #include "common/src/utils/logger.h"
 

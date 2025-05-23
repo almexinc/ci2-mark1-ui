@@ -1,4 +1,7 @@
-﻿#ifndef SF2_5_RESERVATIONBYNAME_H
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#ifndef SF2_5_RESERVATIONBYNAME_H
 #define SF2_5_RESERVATIONBYNAME_H
 
 #include <QObject>

@@ -1,4 +1,7 @@
-﻿#include "sf2_3_checkinselection.h"
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#include "sf2_3_checkinselection.h"
 
 #include "common/src/controller/sharedcontroller.h"
 #include "common/src/utils/logger.h"

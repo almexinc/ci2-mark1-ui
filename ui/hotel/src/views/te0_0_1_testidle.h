@@ -1,4 +1,7 @@
-﻿#ifndef TE____1_TESTIDLE_H
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#ifndef TE____1_TESTIDLE_H
 #define TE____1_TESTIDLE_H
 
 #include <QObject>

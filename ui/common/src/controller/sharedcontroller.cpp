@@ -1,4 +1,7 @@
-﻿#include "sharedcontroller.h"
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#include "sharedcontroller.h"
 
 #include "common/src/controller/resourcecontroller.h"
 #include "common/src/controller/screentransitioncontroller.h"

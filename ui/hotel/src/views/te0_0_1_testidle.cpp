@@ -1,4 +1,7 @@
-﻿#include "te0_0_1_testidle.h"
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#include "te0_0_1_testidle.h"
 
 #include <QByteArray>
 

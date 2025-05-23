@@ -1,4 +1,7 @@
-﻿#ifndef M______INITPAGE_H
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#ifndef M______INITPAGE_H
 #define M______INITPAGE_H
 
 #include <QObject>

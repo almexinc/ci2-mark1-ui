@@ -1,4 +1,7 @@
-﻿#ifndef TESTTOPIC_H
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#ifndef TESTTOPIC_H
 #define TESTTOPIC_H
 
 #include <QObject>
