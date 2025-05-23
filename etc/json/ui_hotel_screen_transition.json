@@ -7,5 +7,23 @@
                 "toScreen": "SF2-3_CheckInSelection"
             }
         ]
+    },
+    {
+        "fromScreen": "SF2-3_CheckInSelection",
+        "conditions": [
+            {
+                "condition": 2,
+                "toScreen": "SF2-6_ReservationByQR"
+            }
+        ]
+    },
+    {
+        "fromScreen": "SF2-6_ReservationByQR",
+        "conditions": [
+            {
+                "condition": 0,
+                "toScreen": "SF2-2_TermsAndConditions"
+            }
+        ]
     }
 ]

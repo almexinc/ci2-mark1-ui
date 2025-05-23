@@ -18,28 +18,41 @@ MqttController::MqttController(QObject *parent)
 
     // Mqttクライアントから通知されるsignalに対するslotのconnect設定
     // 接続時
-    connect(this->_qMqttClient, &QMqttClient::connected, this, []() {
-        qInfo() << "Connected to MQTT broker";
+    connect(this->_qMqttClient, &QMqttClient::connected, this, [this]() {
+        Logger::info(metaObject()->className(), __FUNCTION__, "MQTT brokerに接続しました。");
 
-        // TODO: サブスクライブする
-        // auto topicNameList = Topics::getResultTopicNameList();
+        // サブスクライブ
+        auto topicNameList = Topics::getResultTopicNameList();
+        for (const auto &topicName : topicNameList) {
+            QMqttSubscription *subscription = this->_qMqttClient->subscribe(topicName);
+            if (!subscription) {
+                Logger::error(metaObject()->className(), __FUNCTION__, "トピックのサブスクライブに失敗: " + topicName);
+            }
+        }
+
+        Logger::info(metaObject()->className(), __FUNCTION__, "トピックのサブスクライブ完了");
     });
 
     // Mqttクライアントから通知されるsignalに対するslotのconnect設定
     // メッセージ受信時
     connect(this->_qMqttClient, &QMqttClient::messageReceived, this, [this](const QByteArray &message, const QMqttTopicName &topic) {
-        qInfo() << "Message received on topic:" << topic.name() << ", message:" << message;
+        Logger::info(metaObject()->className(), __FUNCTION__, "Mqtt Message Receive topic: " + topic.name() + ", message: " + message);
     });
 
     // Mqttクライアントから通知されるsignalに対するslotのconnect設定
     // 切断時
     connect(this->_qMqttClient, &QMqttClient::disconnected, this, [this]() {
-        qInfo() << "Disconnected from MQTT broker";
+        Logger::info(metaObject()->className(), __FUNCTION__, "MQTT brokerから切断されました。");
 
-        // 再接続する
-        this->_qMqttClient->connectToHost();
+        // 切断時に直後に再接続を行うより、間を置く
+        QTimer::singleShot(1000, this, [this]() {
+            Logger::info(metaObject()->className(), __FUNCTION__, "再接続を試みます。");
+            // 再接続する
+            this->_qMqttClient->connectToHost();
+        });
     });
 
+    // 送信時にクラッシュする事があったため、publishする処理はスレッドで行う
     this->_mqttSenderThread = QtConcurrent::run([this]() {
         while (this->_senderRunning) {
             if (this->_mqttSenders.isEmpty()) {
@@ -50,7 +63,8 @@ MqttController::MqttController(QObject *parent)
             this->_senderMutex.lock();
             auto sender = this->_mqttSenders.takeFirst();
             this->_senderMutex.unlock();
-            this->_qMqttClient->publish(sender.topic, sender.message);
+            // FIXME: サブスレッドからネットワーク操作は出来ないというワーニングが出て送信処理は行われない
+            // this->_qMqttClient->publish(sender.topic, sender.message);
         }
     });
 }
@@ -87,18 +101,15 @@ void MqttController::init(const QString &hostName, quint16 port, const QString &
  */
 void MqttController::sendMessage(const QString &topic, const QByteArray &message)
 {
-    Q_UNUSED(topic);
-    Q_UNUSED(message);
-
-    // TODO: 送信する処理はスレッドになる模様
-
     if (this->_qMqttClient->state() == QMqttClient::Connected) {
 
         this->_senderMutex.lock();
         this->_mqttSenders.append({ topic, message });
         this->_senderMutex.unlock();
+
+        // FIXME:
+        this->_qMqttClient->publish(topic, message);
     } else {
-        Logger::error(metaObject()->className(), __FUNCTION__, "MQTT clientに接続されていません。送信は行われません。");
-        // TODO: 待機状態にする？
+        Logger::error(metaObject()->className(), __FUNCTION__, "MQTT clientに接続されていません。送信は行われません。: topic: " + topic + ", message: " + message);
     }
 }

@@ -1,4 +1,7 @@
-﻿#include "testtopic.h"
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#include "testtopic.h"
 
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -6,11 +9,15 @@
 
 #include "common/src/utils/logger.h"
 
+#define REQUEST_TOPIC_NAME "/almex/device/test/request_test_topic"
+#define RESULT_TOPIC_NAME  "/almex/device/test/result_test_topic"
+#define NOTICE_TOPIC_NAME  "/almex/device/test/notice_test_topic"
+
 TestTopic::TestTopic(QObject *parent)
     : QObject { parent }
 {
-    this->_receiveTopicName.append("/almex/device/test/result_test_topic");
-    this->_receiveTopicName.append("/almex/device/test/notice_test_topic");
+    this->_receiveTopicName.append(RESULT_TOPIC_NAME);
+    this->_receiveTopicName.append(NOTICE_TOPIC_NAME);
 }
 
 /**
@@ -57,7 +64,7 @@ CheckTopicType TestTopic::checkTopic(const QString &topicName, const QByteArray 
  */
 std::pair<QString, QByteArray> TestTopic::requestStartRead()
 {
-    QString     topicName = "/almex/device/test/request_test_topic";
+    QString     topicName = REQUEST_TOPIC_NAME;
     QJsonObject jsonObj   = {
         { "request", "start_read" },
     };

@@ -1,8 +1,13 @@
-﻿#ifndef SF2_6_RESERVATIONBYQR_H
+﻿/****************************************************************************
+** Copyright (c) ALMEX INC. All rights reserved.
+****************************************************************************/
+#ifndef SF2_6_RESERVATIONBYQR_H
 #define SF2_6_RESERVATIONBYQR_H
 
 #include <QObject>
 #include <QQmlEngine>
+
+#include "common/src/topics/testtopic.h"
 
 class SF2_6_ReservationByQR : public QObject
 {
@@ -26,6 +31,18 @@ private:
      * @param message メッセージ本文
      */
     void mqttMessageReceived(const QString &topic, const QByteArray &message);
+
+    /**
+     * @brief TODO: QRコード読み取り結果の送信結果を受信する
+     */
+    void resultTestTopic();
+
+    /**
+     * @brief TODO: QRコード読み取り結果の通知を受信する
+     */
+    void noticeTestTopic();
+
+    TestTopic _testTopic; // TODO: 動作確認用の仮トピック
 };
 
 #endif // SF2_6_RESERVATIONBYQR_H

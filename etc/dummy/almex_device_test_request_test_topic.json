@@ -6,19 +6,17 @@
             "sendTopic": "/almex/device/test/result_test_topic",
             "startDelayMs": 1000,
             "response": {
-                "type": "text",
-                "text": {
-                    "content": "Hello, how can I assist you today?"
-                }
+                "read_id": "test_id"
             }
         },
         {
             "sendTopic": "/almex/device/test/notice_test_topic",
-            "startDelayMs": 500,
+            "startDelayMs": 5000,
             "response": {
-                "type": "text",
-                "text": {
-                    "content": "Hello, how can I assist you today?"
+                "read_id": "test_read_id",
+                "result": {
+                    "result_code": 0,
+                    "result_message": "OK"
                 }
             }
         }
