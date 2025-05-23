@@ -10,6 +10,7 @@
 
 SharedController::SharedController()
     : QObject { nullptr }
+    , _languageCode { "jp" }
 {
     this->_mqttController = new MqttController(this);
 
@@ -82,11 +83,15 @@ void SharedController::nextScreen(const QString &screenId, int condition)
 }
 
 /**
- * @brief QML側で言語切り替えボタンが押下された際に呼ばれるメソッド
+ * @brief QML側で言語切り替えボタンが押下された際に呼ばれるメソッド。
+ * 現在の言語コードを書き換える。
  * @param languageCode 切り替わった言語コード
  */
 void SharedController::changeLanguageCodeForQml(const QString &languageCode)
 {
+    // 言語コードを変更する
+    this->_languageCode = languageCode;
+
     Logger::info("SharedController", __FUNCTION__, "言語切り替え: " + languageCode);
     emit this->changeLanguageCode(languageCode);
 }

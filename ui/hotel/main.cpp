@@ -71,6 +71,21 @@ int main(int argc, char *argv[])
         QCoreApplication::installTranslator(&translator);
     }
 
+    // 言語変更時にqmを再読み込みする
+    QObject::connect(
+        sharedController,
+        &SharedController::changeLanguageCode,
+        &engine,
+        [&translator, &engine](const QString &languageCode) {
+            if (translator.load(":/i18n/hotel_" + languageCode + ".qm")) {
+                QCoreApplication::removeTranslator(&translator);
+                QCoreApplication::installTranslator(&translator);
+                engine.retranslate();
+            } else {
+                Logger::info("main", __FUNCTION__, "言語ファイルの読み込みに失敗しました。：" + languageCode);
+            }
+        });
+
     QObject::connect(
         &engine,
         &QQmlApplicationEngine::objectCreationFailed,

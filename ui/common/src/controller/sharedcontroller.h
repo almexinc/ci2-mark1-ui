@@ -50,6 +50,13 @@ public:
      */
     Q_INVOKABLE void changeLanguageCodeForQml(const QString &languageCode);
 
+    /**
+     * @brief Get the Language Code object
+     *
+     * @return QString
+     */
+    QString getLanguageCode() const { return this->_languageCode; }
+
 signals:
     /**
      * @brief MQTTメッセージ受信時に通知されるシグナル
@@ -86,6 +93,7 @@ private:
     SharedController();
     MqttController *_mqttController;
     DummyResponse   _dummyResponse; // 送信処理に合わせて DummyResponse を使用する
+    QString         _languageCode;  // 現在の言語コード。言語コードは ui/hotel/view/Constans.qml に定義されているlanguageButtonListに順ずる。
 };
 
 #endif // SHAREDCONTROLLER_H
