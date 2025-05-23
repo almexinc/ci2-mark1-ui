@@ -1,0 +1,11 @@
+[
+    {
+        "fromScreen": "SF2-1_Idle",
+        "conditions": [
+            {
+                "condition": 0,
+                "toScreen": "SF2-3_CheckInSelection"
+            }
+        ]
+    }
+]

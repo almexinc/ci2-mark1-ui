@@ -12,6 +12,8 @@ Item {
     property string subText: ""
     property string subFontPixelSize: "38"
 
+    signal buttonClicked(int condition) // TODO: 仮。menuButtonListに何らかのコンディションIDを持たせる必要があるか。
+
     GridLayout {
         id: _buttonGrid
         anchors.fill: parent
@@ -42,6 +44,7 @@ Item {
                 Layout.rowSpan: rowSpan
                 onClicked: {
                     console.log(modelData.text + "押下")
+                    _buttonGridWrap.buttonClicked(0) // TODO: 仮。
                 }
             }
         }

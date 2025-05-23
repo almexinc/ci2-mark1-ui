@@ -16,6 +16,13 @@ public:
      */
     Q_INVOKABLE void onRemoved();
 
+    /**
+     * @brief メニューボタン押下処理
+     *
+     * @param condition メニューボタン押下条件
+     */
+    Q_INVOKABLE void menuButtonClicked(int condition);
+
 signals:
 
 private:

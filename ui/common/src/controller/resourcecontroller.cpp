@@ -47,3 +47,8 @@ QString ResourceController::getDummyResponseDirPath() const
 {
     return this->_rootDir.absolutePath() + "/etc/dummy";
 }
+
+QString ResourceController::getScreenTransitionSettingDirPath() const
+{
+    return this->_rootDir.absolutePath() + "/etc/json";
+}

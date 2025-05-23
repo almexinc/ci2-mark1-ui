@@ -32,7 +32,7 @@ public:
      * @param topic トピック名
      * @param message 本文
      */
-    void sendMessage(const QString &topic, const QString &message);
+    void sendMessage(const QString &topic, const QByteArray &message);
 
 signals:
     void messageReceived(const QString &topic, const QByteArray &message);

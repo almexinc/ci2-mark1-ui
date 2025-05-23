@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 ** Copyright (c) ALMEX INC. All rights reserved.
 ****************************************************************************/
 
@@ -48,6 +48,10 @@ Content {
                 bottomMargin: Window.height > constants.breakPointHeight ? 240 : 130
             }
             menuButtonList: _vm.menuButtonList
+
+            onButtonClicked: function(condition) {
+                _vm.menuButtonClicked(condition)
+            }
         }
 
         MenuButtonGridview {
@@ -196,8 +200,9 @@ Content {
     }
 
     // stub::
-    QtObject {
+    SF2_1_Idle {
         id: _vm
+
         property int nowDate: 20241024 //現在日付
         property int nowTime: 1212 //現在時刻
         property string hotelName: "アルメックスホテル浅草" //ホテル名
@@ -224,6 +229,7 @@ Content {
         }
 
         /**
+         * FIXME: C++側処理に置き換える
          * @brief （スタブ内だけの利用）現在日時を取得
         */
         function getNowDataTime() {
@@ -241,10 +247,6 @@ Content {
 
             _vm.nowTime = parseInt(hour + minute, 10); // 結合して数値に変換
         }
-
-        function onRemoved() {
-            console.log("onRemoved")
-        }
     }
     // （スタブ内だけの利用）現在時刻の更新用のタイマー
     Timer {
@@ -255,8 +257,4 @@ Content {
         }
     }
 
-    SF2_1_Idle {
-        // TODO: stubを解除して使う
-        //id: _vm
-    }
 }

@@ -1,6 +1,7 @@
 ﻿#include "sharedcontroller.h"
 
 #include "common/src/controller/resourcecontroller.h"
+#include "common/src/controller/screentransitioncontroller.h"
 #include "common/src/controller/uisettingcontroller.h"
 #include "common/src/utils/logger.h"
 
@@ -63,4 +64,16 @@ void SharedController::qmlLogInfo(const QString &text)
 void SharedController::qmlLogError(const QString &text)
 {
     Logger::info("qml", "", text);
+}
+
+/**
+ * @brief 画面遷移を行うメソッド。
+ * 設定ファイル hotel_screen_transition.json に記載されているqmlNameを元に遷移先の画面を決定する。
+ * @param screenId 現在の画面名
+ * @param condition 遷移条件
+ */
+void SharedController::nextScreen(const QString &screenId, int condition)
+{
+    auto name = ScreenTransitionController::getInstance()->getNextScreen(screenId, condition);
+    emit this->qmlFilePushScreen(name);
 }

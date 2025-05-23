@@ -33,6 +33,14 @@ public:
      */
     Q_INVOKABLE void qmlLogError(const QString &text);
 
+    /**
+     * @brief 画面遷移を行うメソッド。
+     * 設定ファイル hotel_screen_transition.json に記載されているqmlNameを元に遷移先の画面を決定する。
+     * @param screenId 現在の画面名
+     * @param condition 遷移条件
+     */
+    void nextScreen(const QString &screenId, int condition);
+
 signals:
     /**
      * @brief MQTTメッセージ受信時に通知されるシグナル

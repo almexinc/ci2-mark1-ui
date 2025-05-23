@@ -22,6 +22,7 @@ public:
     QString getLogDirPath() const;
     QString getSettingDirPath() const;
     QString getDummyResponseDirPath() const;
+    QString getScreenTransitionSettingDirPath() const;
 
 signals:
 

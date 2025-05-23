@@ -13,6 +13,7 @@
 #include "common/src/controller/logcontroller.h"
 #include "common/src/controller/mqttcontroller.h"
 #include "common/src/controller/resourcecontroller.h"
+#include "common/src/controller/screentransitioncontroller.h"
 #include "common/src/controller/sharedcontroller.h"
 #include "common/src/controller/uisettingcontroller.h"
 #include "common/src/utils/logger.h"
@@ -50,6 +51,10 @@ int main(int argc, char *argv[])
 
     // ログの削除&定期削除開始
     LogController::getInstance()->startIntervalDeleteLog(uiSettingController->getLogSaveDays());
+
+    // 画面遷移コントローラーのセットアップ
+    auto *screenTransitionController = ScreenTransitionController::getInstance();
+    screenTransitionController->init(resourceController->getScreenTransitionSettingDirPath());
 
     // MQTT含むコントローラーのセットアップ。QML側でも使うコードの登録
     auto sharedController = SharedController::getInstance();

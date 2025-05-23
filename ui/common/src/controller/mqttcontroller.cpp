@@ -85,7 +85,7 @@ void MqttController::init(const QString &hostName, quint16 port, const QString &
  * @param topic トピック名
  * @param message 本文
  */
-void MqttController::sendMessage(const QString &topic, const QString &message)
+void MqttController::sendMessage(const QString &topic, const QByteArray &message)
 {
     Q_UNUSED(topic);
     Q_UNUSED(message);
@@ -95,7 +95,7 @@ void MqttController::sendMessage(const QString &topic, const QString &message)
     if (this->_qMqttClient->state() == QMqttClient::Connected) {
 
         this->_senderMutex.lock();
-        this->_mqttSenders.append({ topic, message.toUtf8() });
+        this->_mqttSenders.append({ topic, message });
         this->_senderMutex.unlock();
     } else {
         Logger::error(metaObject()->className(), __FUNCTION__, "MQTT clientに接続されていません。送信は行われません。");
