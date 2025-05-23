@@ -1,9 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>qtquickcontrols2.conf</file>
-        <file>qml/Main.qml</file>
-        <file>qml/views/m0_0_0_InitPage.qml</file>
-        <file>qml/views/te0_0_1_TestIdle.qml</file>
         <file>language.js</file>
         <file>view/common/background/BackgroundBase.qml</file>
         <file>view/common/base/BaseButton.qml</file>
