@@ -20,6 +20,11 @@ public:
     Q_INVOKABLE void onRemoved();
 
     /**
+     * @brief 画面が生成されてから行われるC++側の初期化処理
+     */
+    Q_INVOKABLE void init();
+
+    /**
      * @brief メニューボタン押下処理
      *
      * @param condition メニューボタン押下条件
@@ -27,6 +32,10 @@ public:
     Q_INVOKABLE void menuButtonClicked(int condition);
 
 signals:
+    /**
+     * @brief 画面が生成されてから操作可能になった事を通知するシグナル
+     */
+    void initialized();
 
 private:
     /**

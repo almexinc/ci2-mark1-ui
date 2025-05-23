@@ -14,10 +14,6 @@ SF2_6_ReservationByQR::SF2_6_ReservationByQR(QObject *parent)
 
     // MQTTメッセージ受信シグナルを接続
     connect(SharedController::getInstance(), &SharedController::mqttMessageReceived, this, &SF2_6_ReservationByQR::mqttMessageReceived);
-
-    // TODO: 画面遷移と同時にQRの読み込みを開始するイメージ
-    auto [topic, message] = _testTopic.requestStartRead();
-    SharedController::getInstance()->mqttMessageSend(topic, message);
 }
 
 /**
@@ -27,6 +23,22 @@ void SF2_6_ReservationByQR::onRemoved()
 {
     // 画面遷移時にMQTTの受信が次画面と交差しないようにシグナルを切断する
     disconnect(SharedController::getInstance(), &SharedController::mqttMessageReceived, this, &SF2_6_ReservationByQR::mqttMessageReceived);
+}
+
+/**
+ * @brief 画面が生成されてから行われるC++側の初期化処理
+ */
+void SF2_6_ReservationByQR::init()
+{
+    Logger::info(metaObject()->className(), __FUNCTION__, "初期化処理開始");
+
+    // TODO: 画面遷移と同時にQRの読み込みを開始するイメージ
+    auto [topic, message] = _testTopic.requestStartRead();
+    SharedController::getInstance()->mqttMessageSend(topic, message);
+
+    // 初期化完了通知
+    Logger::info(metaObject()->className(), __FUNCTION__, "初期化処理完了");
+    emit initialized();
 }
 
 /**

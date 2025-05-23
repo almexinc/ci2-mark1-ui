@@ -21,6 +21,11 @@ Content {
         _vm.onRemoved()
     }
 
+    Component.onCompleted: {
+        sharedController.qmlLogInfo("Component.onCompleted: " + qmlFileName)
+        _vm.init();
+    }
+
     isShowLanguageButton: false
     isShowResetButton: true
     function updateNextButtonState() {
@@ -91,15 +96,17 @@ Content {
         }
     }
 
-    // stub::
-    QtObject {
+    SF2_7_ReservationByPreCard {
         id: _vm
         property int nowDate: 20241024 //現在日付
         property int nowTime: 1212 //現在時刻
         property string hotelName: "アルメックスホテル浅草" //ホテル名
         property string guidText: "" //フッターに表示される案内文
 
-
+        onInitialized: {
+            //初期化処理完了後の処理
+            console.log("初期化処理完了")
+        }
 
         //初期化処理
         Component.onCompleted: {
@@ -137,10 +144,5 @@ Content {
         onTriggered: {
             _vm.getNowDataTime()
         }
-    }
-
-    SF2_7_ReservationByPreCard {
-        // TODO: stubを解除して使う
-        //id: _vm
     }
 }

@@ -23,6 +23,7 @@ Content {
 
     Component.onCompleted: {
         sharedController.qmlLogInfo("Component.onCompleted: " + qmlFileName)
+        _vm.init();
     }
 
     isShowLanguageButton: true
@@ -221,6 +222,11 @@ Content {
             { "text": "VOD視聴券", "columnSpan": 1, "rowSpan": 1, "icon": "" },
             { "text": "その他販売", "columnSpan": 1, "rowSpan": 1, "icon": "" }
         ]
+
+        onInitialized: {
+            //初期化処理
+            _vm.getNowDataTime()
+        }
 
         //初期化処理
         Component.onCompleted: {

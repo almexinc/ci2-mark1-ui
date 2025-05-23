@@ -21,6 +21,11 @@ Content {
         _vm.onRemoved()
     }
 
+    Component.onCompleted: {
+        sharedController.qmlLogInfo("Component.onCompleted: " + qmlFileName)
+        _vm.init();
+    }
+
     isShowLanguageButton: false
     isShowResetButton: true
 
@@ -104,6 +109,12 @@ Content {
             { "text": "ルームカード", "columnSpan": 1, "rowSpan": 1, "fontPixelSize": 45, "icon": ""}
         ]
 
+        onInitialized: {
+            //初期化処理完了後の処理
+            console.log("初期化処理完了")
+            //現在日時の取得
+            _vm.getNowDataTime()
+        }
 
         //初期化処理
         Component.onCompleted: {

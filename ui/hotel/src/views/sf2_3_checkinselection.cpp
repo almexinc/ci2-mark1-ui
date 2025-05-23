@@ -26,6 +26,20 @@ void SF2_3_CheckInSelection::onRemoved()
 }
 
 /**
+ * @brief 画面が生成されてから行われるC++側の初期化処理
+ */
+void SF2_3_CheckInSelection::init()
+{
+    Logger::info(metaObject()->className(), __FUNCTION__, "初期化処理開始");
+
+    // TODO: 画面に応じた処理を入れる
+
+    // 初期化完了通知
+    Logger::info(metaObject()->className(), __FUNCTION__, "初期化処理完了");
+    emit initialized();
+}
+
+/**
  * @brief メニューボタン押下処理
  *
  * @param condition メニューボタン押下条件
